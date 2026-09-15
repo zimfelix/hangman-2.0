@@ -11,7 +11,7 @@ def show_welcome():
     """Zeigt eine kurze Begrüßung."""
     print("Willkommen bei Hangman!")
 
-def get_choice:
+def get_choice():
     choice = input("Select choice: ").strip()
 
     if choice in {"1", "2", "3", "4"}:
