@@ -1,5 +1,0 @@
-name = "sol_worker"
-description = "Starker Agent für Architekturfragen, externe APIs und schwer nachvollziehbare Fehlerketten."
-model = "gpt-5.6-sol"
-model_reasoning_effort = "medium"
-developer_instructions = "Analysiere zuerst Anforderungen, Abhängigkeiten und Risiken. Arbeite konservativ, dokumentiere Annahmen, ändere nur den belegten Scope und führe anschließend das Quality Gate aus."
