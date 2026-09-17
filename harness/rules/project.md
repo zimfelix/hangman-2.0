@@ -22,6 +22,16 @@ gelten. Allgemeine Arbeitsregeln stehen in `core.md`.
 - Quality Gate: `.venv/bin/python scripts/verify.py`
 - Konkrete Python-Codekonventionen stehen in `code.md`.
 
+## Agent-Profile
+
+- Projektprofile liegen unter `.codex/agents/` und sind versionierter,
+  nicht-geheimer Projektbestandteil.
+- `luna_worker` ist der sparsame Standard mit Reasoning `medium`.
+- `terra_worker` und `sol_worker` werden nur nach der Routing-Regel in
+  `AGENTS.md` für komplexere Aufgaben verwendet.
+- Alle Modellentscheidungen bleiben dem Nutzer übersteuerbar; das Quality Gate
+  prüft unabhängig vom gewählten Modell immer denselben Projektstand.
+
 ## Architektur
 
 - `src/main.py` startet die Anwendung und verbindet UI mit Spiellogik.

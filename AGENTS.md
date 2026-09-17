@@ -17,6 +17,22 @@ Deutsch; Code, Dateinamen und Python-Bezeichner bleiben idiomatisch englisch.
    `harness/templates/story.md`. Reine Dokumentations- und interne
    Refactoring-Aufgaben benötigen keine neue Story.
 
+## Modellrouting
+
+- Standard für diese Projektarbeit ist `luna_worker` mit Modell
+  `gpt-5.6-luna` und Reasoning `medium`.
+- Für kleine, klar abgegrenzte Aufgaben (Dokumentation, eine mechanische
+  Ein-Datei-Änderung, einfache Tests) keinen zusätzlichen Agenten starten.
+- `terra_worker` nur bei normalen mehrteiligen Implementierungen, neuen Tests
+  oder begrenzter Fehlersuche delegieren.
+- `sol_worker` nur bei Architekturentscheidungen, externen APIs, unklaren
+  Fehlerketten oder wiederholtem Quality-Gate-Fehlschlag delegieren.
+- Nur den für die Aufgabe nötigen Kontext übergeben. Nach der Delegation bleibt
+  die Prüfung im aktuellen Quality Gate bestehen.
+- Diese Profile wählen ein Modell für delegierte Agenten; sie wechseln nicht
+  nachträglich das bereits laufende Hauptmodell einer Sitzung. Eine bewusste
+  manuelle Modellwahl des Nutzers hat Vorrang.
+
 ## Arbeitsweise
 
 - Erkläre neue Konzepte kurz und verständlich.

@@ -1,0 +1,5 @@
+name = "luna_worker"
+description = "Sparsamer Standard für kleine, klare Coding-, Test- und Dokumentationsaufgaben."
+model = "gpt-5.6-luna"
+model_reasoning_effort = "medium"
+developer_instructions = "Arbeite eng begrenzt am Auftrag, lies nur relevante Dateien, ändere nichts außerhalb des Scopes und liefere eine kurze Zusammenfassung mit den ausgeführten Prüfungen."
