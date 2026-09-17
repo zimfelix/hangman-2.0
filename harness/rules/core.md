@@ -15,9 +15,10 @@ Code-Stil, UI und konkrete Befehle gehören in die projektspezifischen Dateien
    verhaltensgleiche Umstrukturierung braucht keine Spec.
 3. Eine Spec enthält Ziel, klar abgegrenzten Umfang, atomare und beobachtbare
    Akzeptanzkriterien (AK) sowie das Nicht-Ziel.
-4. Leite für jedes relevante AK einen passenden Nachweis ab: automatisierter
-   Test, statische Prüfung oder ausdrücklich beschriebener manueller Check.
-   Implementiere anschließend nur die kleinste zusammenhängende Änderung.
+4. Leite für jedes relevante AK einen Nachweis ab. Automatisierte Tests sind der
+   Standard und tragen den Marker `SXXX-AKX`. Nur wenn Automatisierung nicht
+   sinnvoll ist, dokumentiere eine bestandene statische oder manuelle Prüfung
+   direkt in der Spec. Implementiere danach die kleinste zusammenhängende Änderung.
 5. Nutze während der Arbeit den kleinsten passenden Check. Vor Abschluss läuft
    immer das projektspezifische Quality Gate.
 6. Schlägt es fehl: Ursache als **Code**, **Test** oder **Spec** einordnen,

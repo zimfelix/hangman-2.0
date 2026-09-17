@@ -24,8 +24,12 @@ Prompt-Verlauf.
 
 ## Nachweise
 
-- **AK1:** `Testpfad/Testname`, statische Prüfung oder klarer manueller Check.
-- **AK2:** `Testpfad/Testname`, statische Prüfung oder klarer manueller Check.
+Automatisierte Tests verwenden Marker wie `SXXX-AK1`; dafür ist hier keine
+zusätzliche Zeile nötig. Nur für begründete Ausnahmen verwenden und nicht
+benötigte Zeilen löschen:
+
+- **AKX [Statisch]:** `PASS` — ausgeführter Befehl und Ergebnis.
+- **AKY [Manuell]:** `PASS` — ausgeführter Ablauf und beobachtetes Ergebnis.
 - **Quality Gate:** projektspezifischer Befehl.
 
 `State: Implemented` erst setzen, wenn alle AK nachweisbar erfüllt und das

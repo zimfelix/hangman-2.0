@@ -63,8 +63,10 @@ Das Projekt verwendet die lokale virtuelle Umgebung `.venv` mit Python 3.14.
 .venv/bin/python scripts/verify.py
 ```
 
-Das Quality Gate prüft Syntax, Ruff, pytest und die Zuordnung der
-Akzeptanzkriterien zu Tests.
+Das Quality Gate prüft Syntax, Ruff, pytest und den Nachweis jedes
+Akzeptanzkriteriums. Normalerweise geschieht das über Testmarker wie
+`S001-AK1`. Nur nicht sinnvoll automatisierbare Kriterien dürfen in der Spec
+mit einer bestandenen statischen oder manuellen Prüfung dokumentiert werden.
 
 ## Clean-Code-Grundlagen für zukünftige Projekte
 

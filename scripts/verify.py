@@ -20,6 +20,14 @@ ACCEPTANCE_CRITERION_PATTERN = re.compile(
     r"^- \*\*(AK\d+):\**",
     re.MULTILINE | re.IGNORECASE,
 )
+EXCEPTION_EVIDENCE_PATTERN = re.compile(
+    r"^- \*\*(AK\d+) \[(Statisch|Manuell)\]:\*\*\s+(.+?)\s*$",
+    re.MULTILINE | re.IGNORECASE,
+)
+PASSED_EVIDENCE_PATTERN = re.compile(
+    r"^`?PASS`?\s*(?:—|-|:)\s+.+$",
+    re.IGNORECASE,
+)
 
 
 def print_result(name: str, passed: bool, detail: str = "") -> None:
@@ -56,6 +64,21 @@ def find_test_files() -> list[Path]:
     return sorted(TEST_DIRECTORY.rglob("test_*.py"))
 
 
+def find_exception_evidence(spec_content: str) -> dict[str, str]:
+    """Return passed static or manual evidence keyed by criterion."""
+    return {
+        criterion.upper(): detail.strip()
+        for criterion, _evidence_type, detail in EXCEPTION_EVIDENCE_PATTERN.findall(
+            spec_content
+        )
+    }
+
+
+def evidence_has_passed(detail: str) -> bool:
+    """Return whether an exception evidence line records a completed check."""
+    return PASSED_EVIDENCE_PATTERN.match(detail) is not None
+
+
 def check_spec_coverage() -> bool:
     """Check story metadata and acceptance-criterion markers in tests."""
     print("\n== Spec coverage ==")
@@ -90,15 +113,30 @@ def check_spec_coverage() -> bool:
             errors.append(f"{spec_path.name}: no acceptance criteria found")
             continue
 
+        exception_evidence = find_exception_evidence(spec_content)
+        unknown_evidence = set(exception_evidence) - acceptance_criteria
+        for criterion in sorted(unknown_evidence):
+            errors.append(
+                f"{spec_path.name}: evidence references unknown {criterion}"
+            )
+
         for criterion in sorted(acceptance_criteria):
             accepted_markers = {
                 f"{story_id}-{criterion}".lower(),
                 f"{story_id}_{criterion}".lower(),
             }
-            if not any(marker in test_content for marker in accepted_markers):
+            if any(marker in test_content for marker in accepted_markers):
+                continue
+
+            evidence = exception_evidence.get(criterion)
+            if evidence is None:
                 errors.append(
-                    f"{spec_path.name}: no test marker for "
-                    f"{story_id}-{criterion}"
+                    f"{spec_path.name}: no test marker or static/manual evidence "
+                    f"for {story_id}-{criterion}"
+                )
+            elif not evidence_has_passed(evidence):
+                errors.append(
+                    f"{spec_path.name}: evidence for {criterion} is not marked PASS"
                 )
 
     if errors:

@@ -7,10 +7,11 @@ erneut vollständig gelesen.
 1. **Ziel und MVP:** Was soll für wen welches Problem lösen? Was muss in Version
    1 funktionieren – und was gehört ausdrücklich nicht dazu?
 2. **Technik und Grenzen:** Sprache/Runtime, Plattform, externe Dienste oder
-   Daten sowie die wichtigsten Module und ihre Verantwortlichkeiten.
+   Daten sowie die wichtigsten Module und ihre Verantwortlichkeiten. Wie werden
+   Secrets, Testdaten und irreversible externe Aktionen geschützt?
 3. **Arbeits- und Qualitätsweg:** Installation, Start, Tests, Format/Lint und
    der konkrete Quality-Gate-Befehl. Welche Nachweise können automatisiert sein,
-   welche müssen manuell erfolgen?
+   welche müssen statisch oder manuell erfolgen? Ist ein echter Smoke-Test nötig?
 4. **Zusammenarbeit und Lieferung:** Erklärniveau, Sprache, Entscheidungen mit
    Rückfrage sowie Commit-/Push-Regel.
 
