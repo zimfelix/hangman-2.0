@@ -1,0 +1,3 @@
+# Laufzeit-Abhängigkeiten der Anwendung.
+# Hangman benötigt aktuell keine externen Python-Pakete.
+# Neue Pakete, die das Spiel beim Ausführen benötigt, kommen hier hinein.

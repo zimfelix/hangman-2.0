@@ -1,0 +1,14 @@
+[project]
+name = "hangman-2"
+version = "0.1.0"
+description = "Terminal version of Hangman"
+requires-python = ">=3.14"
+dependencies = []
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py314"

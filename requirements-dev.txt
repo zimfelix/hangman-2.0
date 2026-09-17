@@ -1,0 +1,6 @@
+# Entwicklungsumgebung: enthält auch alle Laufzeit-Abhängigkeiten.
+-r requirements.txt
+
+# Werkzeuge zum Testen und Prüfen, nicht zum Ausführen des Spiels.
+pytest
+ruff

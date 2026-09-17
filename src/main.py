@@ -3,13 +3,47 @@
 main.py verbindet Frontend/UI und Backend/Spiellogik.
 """
 
-from frontend.ui import show_welcome
+from backend.game import Hangman
+from backend.words import choose_word
+from frontend import ui
 
 
-def main():
+def play_round() -> bool:
+    """Play one complete round and return whether it was won."""
+    game = Hangman(choose_word())
+
+    while not game.is_over:
+        ui.show_game_state(game)
+        result = game.guess(ui.get_letter())
+        ui.show_guess_result(result)
+
+    ui.show_game_state(game)
+    ui.show_round_result(game)
+    return game.is_won
+
+
+def main() -> None:
     """Startet das Spiel."""
-    show_welcome()
-    print("Hangman startet bald!")
+    wins = 0
+    losses = 0
+    ui.show_welcome()
+
+    while True:
+        ui.show_main_menu()
+        choice = ui.get_menu_choice()
+
+        if choice == "1":
+            if play_round():
+                wins += 1
+            else:
+                losses += 1
+        elif choice == "2":
+            ui.show_rules()
+        elif choice == "3":
+            ui.show_session_statistics(wins, losses)
+        else:
+            ui.show_exit_message()
+            return
 
 
 if __name__ == "__main__":

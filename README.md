@@ -6,6 +6,18 @@ Ein kleines Hangman-Konsolenspiel in Python.
 
 ```text
 hangman/
+├── AGENTS.md               # Kurzer Wegweiser für Coding-Agenten
+├── harness/                # Allgemeine und projektspezifische Arbeitsregeln
+│   ├── rules/
+│   │   ├── core.md         # Wiederverwendbarer minimaler Coding-Harness
+│   │   ├── code.md         # Python-Codekonventionen für Hangman
+│   │   └── project.md      # Profil und Grenzen dieses Projekts
+│   ├── templates/
+│   │   ├── project-init.md # Einmalige Vorlage für neue Projekte
+│   │   └── story.md        # Vorlage für kleine Anforderungen
+├── specs/                  # Konkrete Anforderungen und Akzeptanzkriterien
+├── scripts/
+│   └── verify.py           # Zentrales Quality Gate
 ├── src/
 │   ├── main.py              # Startpunkt: verbindet Frontend und Backend
 │   ├── backend/             # Spiellogik und Daten
@@ -25,6 +37,11 @@ hangman/
 - `backend/`: Die eigentliche Spiellogik im Hintergrund.
 - `main.py`: Startet das Programm und verbindet Frontend mit Backend.
 - `tests/`: Hier kommen später Tests rein.
+- `harness/rules/core.md`: Projektübergreifende Arbeits- und Prüfregeln.
+- `harness/rules/code.md`: Sprach- und projektspezifische Python-Codekonventionen.
+- `harness/rules/project.md`: Nur für Hangman geltende Technik- und Architekturregeln.
+- `harness/templates/project-init.md`: Einmaliger Initial-Prompt für neue Projekte.
+- `specs/`: Beschreibt gewünschtes Verhalten, bevor es implementiert wird.
 
 ## Starten
 
@@ -33,6 +50,21 @@ hangman/
 ```
 
 Das Projekt verwendet die lokale virtuelle Umgebung `.venv` mit Python 3.14.
+
+## Entwicklungswerkzeuge installieren
+
+```bash
+.venv/bin/python -m pip install -r requirements-dev.txt
+```
+
+## Quality Gate ausführen
+
+```bash
+.venv/bin/python scripts/verify.py
+```
+
+Das Quality Gate prüft Syntax, Ruff, pytest und die Zuordnung der
+Akzeptanzkriterien zu Tests.
 
 ## Clean-Code-Grundlagen für zukünftige Projekte
 
