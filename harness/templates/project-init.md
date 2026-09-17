@@ -14,6 +14,10 @@ erneut vollständig gelesen.
    welche müssen statisch oder manuell erfolgen? Ist ein echter Smoke-Test nötig?
 4. **Zusammenarbeit und Lieferung:** Erklärniveau, Sprache, Entscheidungen mit
    Rückfrage sowie Commit-/Push-Regel.
+5. **Erweiterungscheck:** Braucht das Projekt zusätzliche Regeln für UI/UX,
+   API-Verträge, Datenmodell/Migrationen, Secrets, E2E-Tests oder Dokumentation?
+   Für jeden benötigten Bereich werden eine kleine projektspezifische Datei und
+   ein passender Check im Quality Gate festgelegt.
 
 Aus den Antworten entstehen:
 
