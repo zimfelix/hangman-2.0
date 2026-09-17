@@ -4,32 +4,29 @@
 
 - **State:** Modified
 
-## Ziel
+## User Story
 
-Als Spieler möchte ich ..., damit ...
+Als **[Nutzerrolle]** möchte ich **[Funktion]**, damit **[Nutzen]**.
 
 ## Beschreibung
 
-Kurze fachliche Beschreibung des gewünschten Verhaltens. Keine unnötigen
-Implementierungsdetails.
+Kurze fachliche Beschreibung der Änderung. Keine technische Lösung und kein
+Prompt-Verlauf.
 
 ## Akzeptanzkriterien
 
-- **AK1:** Ein einzelnes, beobachtbares Ergebnis.
-- **AK2:** Ein weiteres einzelnes, beobachtbares Ergebnis.
+- **AK1:** Ein atomar beobachtbares Verhalten.
+- **AK2:** Ein atomar beobachtbares Verhalten.
 
-## Nicht Teil dieser Story
+## Nicht im Umfang
 
-- Bewusst ausgeschlossene Funktionen oder Sonderfälle.
+- Bewusst ausgeschlossene Funktion oder spätere Idee.
 
-## Prüfnachweise
+## Nachweise
 
-Tests verweisen im Testnamen oder in einem kurzen `Covers`-Kommentar auf die
-abgedeckten Kriterien, zum Beispiel `S001-AK1` oder `s001_ak1`.
+- **AK1:** `Testpfad/Testname`, statische Prüfung oder klarer manueller Check.
+- **AK2:** `Testpfad/Testname`, statische Prüfung oder klarer manueller Check.
+- **Quality Gate:** projektspezifischer Befehl.
 
-## State-Regel
-
-`Modified` bedeutet, dass Spec und Code noch nicht nachweislich übereinstimmen.
-`Implemented` darf erst gesetzt werden, wenn alle Akzeptanzkriterien umgesetzt und
-das erforderliche Quality Gate bestanden ist. Einen separaten Status `Not tested`
-gibt es nicht; ohne bestandene Prüfung bleibt die Story `Modified`.
+`State: Implemented` erst setzen, wenn alle AK nachweisbar erfüllt und das
+erforderliche Quality Gate grün sind.

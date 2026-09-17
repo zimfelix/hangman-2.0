@@ -1,61 +1,23 @@
-# Projekt-Initialisierung
+# Project Init – Fragen für ein neues Projekt
 
-Diese Vorlage wird einmal beim Start eines neuen Projekts ausgefüllt. Ihre
-Ergebnisse werden anschließend in das Projektprofil und die ersten Specs
-übertragen. Die ausgefüllte Vorlage muss nicht bei jeder Aufgabe geladen werden.
+Einmal vor der ersten Implementierung ausführen. Offene Antworten als offen
+markieren statt sie zu erfinden. Für spätere Features wird dieser Katalog nicht
+erneut vollständig gelesen.
 
-## 1. Projektziel
+1. **Ziel und MVP:** Was soll für wen welches Problem lösen? Was muss in Version
+   1 funktionieren – und was gehört ausdrücklich nicht dazu?
+2. **Technik und Grenzen:** Sprache/Runtime, Plattform, externe Dienste oder
+   Daten sowie die wichtigsten Module und ihre Verantwortlichkeiten.
+3. **Arbeits- und Qualitätsweg:** Installation, Start, Tests, Format/Lint und
+   der konkrete Quality-Gate-Befehl. Welche Nachweise können automatisiert sein,
+   welche müssen manuell erfolgen?
+4. **Zusammenarbeit und Lieferung:** Erklärniveau, Sprache, Entscheidungen mit
+   Rückfrage sowie Commit-/Push-Regel.
 
-- **Projektname:**
-- **Was soll entstehen?**
-- **Wer soll es benutzen?**
-- **Welches konkrete Problem löst es?**
+Aus den Antworten entstehen:
 
-## 2. Erster Umfang
-
-- **Was gehört zum ersten nutzbaren Stand (MVP)?**
-- **Was gehört ausdrücklich noch nicht dazu?**
-- **Woran erkennt man, dass der erste Stand funktioniert?**
-
-## 3. Technik
-
-- **Programmiersprache und Version:**
-- **Oberfläche oder Plattform:**
-- **Frameworks und wichtige Abhängigkeiten:**
-- **Datenhaltung und externe Dienste:**
-- **Unterstützte Betriebssysteme oder Laufzeitumgebungen:**
-
-## 4. Struktur
-
-- **Startpunkt der Anwendung:**
-- **Gewünschte Hauptordner oder Komponenten:**
-- **Verantwortung und Abhängigkeiten der Komponenten:**
-- **Technische Grenzen, die nicht überschritten werden sollen:**
-
-## 5. Entwicklung und Prüfung
-
-- **Installationsbefehl:**
-- **Start- oder Launchbefehl:**
-- **Testbefehl:**
-- **Lint-/Formatbefehl:**
-- **Quality-Gate-Befehl:**
-- **Weitere notwendige Abschlussprüfungen:**
-
-## 6. Zusammenarbeit mit dem Agenten
-
-- **Erfahrungsniveau des Nutzers:**
-- **Gewünschte Erklärungstiefe:**
-- **Sprache der Kommunikation:**
-- **Besondere Lernziele oder Arbeitspräferenzen:**
-
-## Ableitung
-
-Aus den bestätigten Antworten entstehen:
-
-1. ein kurzes `AGENTS.md` als Wegweiser,
-2. `harness/rules/project.md` mit dauerhaften Projektregeln,
-3. die erste fachliche Spec unter `specs/`,
-4. passende Prüfkommandos für das Quality Gate.
-
-Unbeantwortete Punkte bleiben ausdrücklich offen und werden nicht als Annahmen in
-das Projektprofil übernommen.
+- `AGENTS.md` als kurze Einstiegskarte,
+- `project.md` für Ziel, Architektur und Grenzen,
+- `code.md`, wenn Sprache oder Werkzeuge eigene Regeln benötigen,
+- ein passender Quality-Gate-Befehl bzw. `scripts/verify.*` und
+- die erste Spec erst dann, wenn eine konkrete Nutzfunktion umgesetzt wird.
