@@ -176,11 +176,19 @@ def show_rules() -> None:
     print("- Du gewinnst, wenn du das Wort rechtzeitig vollständig aufdeckst.")
 
 
-def show_session_statistics(wins: int, losses: int) -> None:
-    """Display results from the current program session."""
+def show_session_statistics(
+    session_wins: int,
+    session_losses: int,
+    total_wins: int,
+    total_losses: int,
+) -> None:
+    """Display session and persistent statistics."""
     print("\nStatistik dieser Sitzung")
-    print(f"Gewonnen: {wins}")
-    print(f"Verloren: {losses}")
+    print(f"Gewonnen: {session_wins}")
+    print(f"Verloren: {session_losses}")
+    print("\nGesamtstatistik")
+    print(f"Gewonnen: {total_wins}")
+    print(f"Verloren: {total_losses}")
 
 
 def show_exit_message() -> None:

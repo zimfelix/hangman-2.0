@@ -99,13 +99,22 @@ def test_rules_are_displayed(capsys) -> None:
     assert "So funktioniert Hangman" in capsys.readouterr().out
 
 
-def test_session_statistics_are_displayed(capsys) -> None:
-    """Covers: S001-AK10."""
-    show_session_statistics(wins=2, losses=1)
+def test_session_and_total_statistics_are_displayed(capsys) -> None:
+    """Covers: S001-AK10, S004-AK3."""
+    show_session_statistics(
+        session_wins=2,
+        session_losses=1,
+        total_wins=8,
+        total_losses=5,
+    )
 
     output = capsys.readouterr().out
+    assert "Statistik dieser Sitzung" in output
+    assert "Gesamtstatistik" in output
     assert "Gewonnen: 2" in output
     assert "Verloren: 1" in output
+    assert "Gewonnen: 8" in output
+    assert "Verloren: 5" in output
 
 
 def test_exit_message_is_displayed(capsys) -> None:

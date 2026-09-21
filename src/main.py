@@ -1,12 +1,13 @@
-"""Startpunkt für das Hangman-Spiel.
+"""Startpunkt für das Hangman-Spiel. main.py verbindet Frontend/UI und Backend/Spiellogik."""
 
-main.py verbindet Frontend/UI und Backend/Spiellogik.
-"""
+from pathlib import Path
 
 from backend.game import Hangman
+from backend.persistence import load_statistics, save_statistics
 from backend.words import choose_word
 from frontend import ui
 
+STATISTICS_PATH = Path("data/statistics.json")
 
 def play_round() -> bool:
     """Play one complete round and return whether it was won."""
@@ -26,9 +27,11 @@ def play_round() -> bool:
 
 def main() -> None:
     """Startet das Spiel."""
-    wins = 0
-    losses = 0
+    session_wins = 0
+    session_losses = 0
     ui.show_welcome()
+
+    statistics = load_statistics(STATISTICS_PATH)
 
     while True:
         ui.show_main_menu()
@@ -36,13 +39,22 @@ def main() -> None:
 
         if choice == "1":
             if play_round():
-                wins += 1
+                session_wins += 1
+                statistics["wins"] += 1
             else:
-                losses += 1
+                session_losses += 1
+                statistics["losses"] += 1
+
+            save_statistics(STATISTICS_PATH, statistics)
         elif choice == "2":
             ui.show_rules()
         elif choice == "3":
-            ui.show_session_statistics(wins, losses)
+            ui.show_session_statistics(
+                session_wins,
+                session_losses,
+                statistics["wins"],
+                statistics["losses"],
+            )
         else:
             ui.show_exit_message()
             return
