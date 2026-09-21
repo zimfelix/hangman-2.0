@@ -33,11 +33,16 @@ def load_statistics(path: Path) -> dict[str, int]:
         "losses": losses,
     }
 
-def save_statistics(path: Path, statistics: dict[str, int]) -> None:
-    """Save statistics as formatted JSON."""
+def save_statistics_atomically(
+        path: Path,
+        statistics: dict[str, int],
+) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
 
-    with path.open("w", encoding="utf-8") as file:
+    temporary_path = path.with_suffix(".tmp")
+
+    with temporary_path.open("w", encoding="utf-8") as file:
         json.dump(statistics, file, indent=2)
         file.write("\n")
 
+    temporary_path.replace(path)
