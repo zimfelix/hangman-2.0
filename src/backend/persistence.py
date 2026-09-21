@@ -16,20 +16,21 @@ def load_statistics(path: Path) -> dict[str, int]:
 
     if not isinstance(data, dict):
         return DEFAULT_STATISTICS.copy()
+
     wins = data.get("wins")
     losses = data.get("losses")
 
     if (
-        not type(data.get("wins")) is not int
-        or type(data.get("losses")) is not int
-        or data.get("wins") < 0
-        or data.get("losses") < 0
+        type(wins) is not int
+        or type(losses) is not int
+        or wins < 0
+        or losses < 0
     ):
         return DEFAULT_STATISTICS.copy()
 
     return {
-        "wins": data["wins"],
-        "losses": data["losses"],
+        "wins": wins,
+        "losses": losses,
     }
 
 def save_statistics(path: Path, statistics: dict[str, int]) -> None:
