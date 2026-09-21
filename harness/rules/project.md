@@ -38,8 +38,11 @@ gelten. Allgemeine Arbeitsregeln stehen in `core.md`.
 
 ## Git-Delivery
 
-- Dieses persönliche Lernprojekt darf nach einem bestandenen Quality Gate direkt
-  in sein konfiguriertes GitHub-Repository gepusht werden.
+- Dieses persönliche Lernprojekt arbeitet review-first: Nach einem bestandenen
+  Quality Gate fasst der Agent Änderungen, Tests und offene Punkte kurz zusammen
+  und wartet auf die ausdrückliche Freigabe des Nutzers.
+- Commit und Push erfolgen nur nach dieser Freigabe. Ohne Freigabe darf der Agent
+  weder automatisch committen noch pushen.
 - Eine abgeschlossene Story wird gemeinsam mit ihrem Code, ihren Tests und den
   nötigen Konfigurationsänderungen in einem nachvollziehbaren Commit gesichert.
 - Commit-Titel beginnen bei Story-Arbeit mit der Spec-ID, z. B. `S001: Terminal

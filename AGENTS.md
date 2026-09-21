@@ -27,5 +27,6 @@ Deutsch; Code, Dateinamen und Python-Bezeichner bleiben idiomatisch englisch.
 - Wende bei Fehlern die Korrekturschleife aus `harness/rules/core.md` an.
 - Ändere Harness-Regeln niemals automatisch wegen eines einzelnen Fehlers.
 - Folge nach bestandenem Quality Gate der Git-Delivery-Policy aus
-  `harness/rules/project.md`: nur den zusammenhängenden Arbeitsstand committen
-  und anschließend pushen. Keine Force-Pushes, Merges oder fremden Änderungen.
+  `harness/rules/project.md`: Änderungen kurz zusammenfassen und auf die
+  ausdrückliche Freigabe des Nutzers warten. Commit und Push nie automatisch
+  ausführen. Keine Force-Pushes, Merges oder fremden Änderungen.

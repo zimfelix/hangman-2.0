@@ -80,4 +80,3 @@ class Hangman:
 
         self._incorrect_guesses += 1
         return GuessResult.INCORRECT
-
