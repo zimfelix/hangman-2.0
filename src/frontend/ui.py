@@ -2,8 +2,38 @@
 
 from backend.game import GuessResult, Hangman
 
+DIFFICULTY_ATTEMPTS = {
+    "1": 8,
+    "2": 6,
+    "3": 4,
+}
+
 HANGMAN_STAGES = (
     r"""
+          
+          
+          
+          
+          
+    =========
+    """,
+    r"""
+      |   
+      |   
+      |   
+      |   
+      |   
+    =========
+    """,
+    r"""
+      +---+
+      |    
+      |    
+      |    
+      |    
+    =========
+    """,
+    r"""
       +---+
       |   |
           |
@@ -26,15 +56,6 @@ HANGMAN_STAGES = (
       |   |
       O   |
       |   |
-          |
-          |
-    =========
-    """,
-    r"""
-      +---+
-      |   |
-      O   |
-     /|   |
           |
           |
     =========
@@ -99,9 +120,26 @@ def get_letter() -> str:
     return input("Rate einen Buchstaben: ").strip()
 
 
+def show_difficulty_menu() -> None:
+    """Display the available difficulty levels."""
+    print("\nSchwierigkeitsgrad")
+    print("1. Leicht (8 Fehlversuche)")
+    print("2. Normal (6 Fehlversuche)")
+    print("3. Schwer (4 Fehlversuche)")
+
+
+def get_max_incorrect_guesses() -> int:
+    """Ask for a difficulty level and return its allowed incorrect guesses."""
+    while True:
+        choice = input("Deine Auswahl: ").strip()
+        if choice in DIFFICULTY_ATTEMPTS:
+            return DIFFICULTY_ATTEMPTS[choice]
+        print("Ungültige Auswahl. Bitte wähle 1, 2 oder 3.")
+
+
 def show_game_state(game: Hangman) -> None:
     """Display the current state of a round."""
-    stage_index = min(game.incorrect_guesses, len(HANGMAN_STAGES) - 1)
+    stage_index = (game.incorrect_guesses * (len(HANGMAN_STAGES) - 1)) // game.max_incorrect_guesses
     guessed_letters = ", ".join(game.guessed_letters) or "noch keine"
 
     print(HANGMAN_STAGES[stage_index])

@@ -22,6 +22,9 @@ Deutsch; Code, Dateinamen und Python-Bezeichner bleiben idiomatisch englisch.
 - Erkläre neue Konzepte kurz und verständlich.
 - Bevorzuge kleine, nachvollziehbare Schritte und vermeide verfrühte Abstraktion.
 - Verändere Lernübungen nicht ungefragt grundlegend.
+- Bei offenen Produktentscheidungen oder mehrdeutigen Anforderungen frage vor
+  einer Spec oder Implementierung nach. Triff solche Entscheidungen nicht
+  eigenständig.
 - Prüfe Änderungen im kleinstmöglichen sinnvollen Umfang.
 - Führe vor dem Story-State `Implemented` das passende Quality Gate aus.
 - Wende bei Fehlern die Korrekturschleife aus `harness/rules/core.md` an.

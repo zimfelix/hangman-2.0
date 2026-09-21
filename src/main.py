@@ -10,7 +10,9 @@ from frontend import ui
 
 def play_round() -> bool:
     """Play one complete round and return whether it was won."""
-    game = Hangman(choose_word())
+    ui.show_difficulty_menu()
+    max_incorrect_guesses = ui.get_max_incorrect_guesses()
+    game = Hangman(choose_word(), max_incorrect_guesses)
 
     while not game.is_over:
         ui.show_game_state(game)
