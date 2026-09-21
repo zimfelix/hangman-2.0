@@ -14,10 +14,16 @@ def load_statistics(path: Path) -> dict[str, int]:
     except (FileNotFoundError, json.JSONDecodeError):
         return DEFAULT_STATISTICS.copy()
 
+    if not isinstance(data, dict):
+        return DEFAULT_STATISTICS.copy()
+    wins = data.get("wins")
+    losses = data.get("losses")
+
     if (
-        not isinstance(data, dict)
-        or type(data.get("wins")) is not int
+        not type(data.get("wins")) is not int
         or type(data.get("losses")) is not int
+        or data.get("wins") < 0
+        or data.get("losses") < 0
     ):
         return DEFAULT_STATISTICS.copy()
 
