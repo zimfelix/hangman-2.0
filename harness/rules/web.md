@@ -1,8 +1,7 @@
 # Web- und Mobile-UI-Regeln
 
-Diese Regeln gelten ausschließlich für die künftige React-/Vite-Webanwendung
-unter `web/`. Sie ersetzen keine Regeln des universellen Harness und gelten
-nicht für den abzulösenden Python-Konsolenbestand in `src/`.
+Diese Regeln gelten ausschließlich für die React-/Vite-Webanwendung unter
+`web/`. Sie ersetzen keine Regeln des universellen Harness.
 
 ## Referenz und Grenze
 

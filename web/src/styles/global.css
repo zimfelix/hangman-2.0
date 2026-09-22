@@ -1,0 +1,373 @@
+:root {
+  color: #0f172a;
+  background: #f8fafc;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --color-page: #f8fafc;
+  --color-surface: #ffffff;
+  --color-text: #0f172a;
+  --color-muted: #64748b;
+  --color-line: #e2e8f0;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-soft: #eff6ff;
+  --color-success: #15803d;
+  --color-error: #b91c1c;
+  --radius-control: 0.75rem;
+  --radius-card: 1.5rem;
+  --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.06);
+  --transition-fast: 160ms ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 20rem;
+  min-height: 100vh;
+}
+button {
+  font: inherit;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 72.5rem;
+  margin: 0 auto;
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid var(--color-line);
+}
+.brand {
+  color: var(--color-text);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+}
+.brand span {
+  color: var(--color-primary);
+}
+.page-content {
+  width: min(100% - 2rem, 42rem);
+  margin: 0 auto;
+  padding: 3rem 0 4rem;
+}
+.intro {
+  max-width: 37rem;
+  margin-bottom: 2rem;
+}
+.eyebrow {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+h1 {
+  margin-bottom: 0.85rem;
+  font-size: clamp(2.25rem, 8vw, 3.75rem);
+  line-height: 1.04;
+  letter-spacing: -0.055em;
+}
+h2 {
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  letter-spacing: -0.035em;
+}
+.intro > p:last-child,
+.mistake-count,
+.guessed-letters {
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+.game-card,
+.error-card,
+.dialog {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+.game-card,
+.error-card {
+  padding: 1.5rem;
+}
+.start-card .eyebrow {
+  margin-bottom: 0.65rem;
+}
+.difficulty-grid {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+.difficulty-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+.difficulty-button:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
+  color: var(--color-primary-hover);
+}
+.difficulty-button span {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+.round-header,
+.dialog__header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.round-header .eyebrow {
+  margin-bottom: 0.65rem;
+}
+.status-chip {
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  background: var(--color-primary-soft);
+  color: var(--color-primary-hover);
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.hangman-figure {
+  display: block;
+  width: min(100%, 15rem);
+  margin: 1.25rem auto;
+  fill: none;
+  stroke: var(--color-text);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 5;
+}
+.word-display {
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.5rem, 6vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+.mistake-count {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.keyboard-label {
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+.letter-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.45rem;
+}
+.letter-button,
+.icon-button,
+.primary-button,
+.secondary-button {
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  font-weight: 700;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+.letter-button {
+  min-height: 2.75rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-text);
+  text-transform: uppercase;
+}
+.letter-button:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.letter-button:disabled {
+  cursor: not-allowed;
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+.guessed-letters {
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+}
+.primary-button {
+  min-height: 3rem;
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary);
+  color: white;
+  padding: 0.75rem 1rem;
+}
+.primary-button:hover {
+  background: var(--color-primary-hover);
+}
+.secondary-button {
+  min-height: 2.5rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding: 0.5rem 0.8rem;
+}
+.secondary-button:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.result-panel {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: var(--radius-control);
+  background: var(--color-primary-soft);
+}
+.result-panel p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+.error-card {
+  border-color: #fecaca;
+  color: var(--color-error);
+}
+.error-card h2 {
+  font-size: 1.1rem;
+}
+.error-card p {
+  margin: 0.5rem 0 0;
+}
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.45);
+}
+.dialog {
+  width: min(100%, 34rem);
+  padding: 1.5rem;
+}
+.dialog__header .eyebrow {
+  margin-bottom: 0.5rem;
+}
+.icon-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.icon-button:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.statistics-grid {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+.statistics-card {
+  padding: 1rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+.statistics-card h3 {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+.statistics-card dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 0;
+}
+.statistics-card dt {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+.statistics-card dd {
+  margin: 0.25rem 0 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+@media (min-width: 40rem) {
+  .topbar {
+    padding: 1.5rem 2rem;
+  }
+  .page-content {
+    padding-top: 4.5rem;
+  }
+  .game-card,
+  .error-card,
+  .dialog {
+    padding: 2rem;
+  }
+  .difficulty-grid,
+  .statistics-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .difficulty-button {
+    display: block;
+    min-height: 7rem;
+  }
+  .difficulty-button span {
+    display: block;
+    margin-top: 0.5rem;
+  }
+  .letter-grid {
+    grid-template-columns: repeat(10, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

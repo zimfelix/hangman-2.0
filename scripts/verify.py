@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-SPEC_DIRECTORY = PROJECT_ROOT / "specs"
+SPEC_DIRECTORY = PROJECT_ROOT / "specs" / "terminal"
 TEST_DIRECTORY = PROJECT_ROOT / "tests"
 STORY_ID_PATTERN = re.compile(r"^(S\d+)[-_ ]", re.IGNORECASE)
 STATE_PATTERN = re.compile(

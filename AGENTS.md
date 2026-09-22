@@ -1,31 +1,30 @@
-# Hangman Web – Agentenanweisungen
+# Hangman – Agentenanweisungen
 
-Dieses Repository ist ein TypeScript-/React-Lernprojekt für ein lokal
-laufendes Hangman-Webspiel. Der aktive Arbeitsbereich ist die künftige
-Webanwendung unter `web/`; der vorhandene Python-Konsolenbestand ist nur noch
-abzulösender Altbestand und wird nicht erweitert. Kommuniziere mit dem Nutzer
-auf Deutsch; Code, Dateinamen und technische Bezeichner bleiben idiomatisch
-englisch. Verwende bei Erklärungen wichtige englische Fachbegriffe direkt in
-Klammern.
+Dieses Repository enthält zwei getrennte Lernbereiche: ein Python-Terminalspiel
+und ein React-/TypeScript-Webspiel. Kommuniziere mit dem Nutzer auf Deutsch;
+Code, Dateinamen und technische Bezeichner bleiben idiomatisch englisch.
 
 ## Vor Änderungen
 
-1. Lies `harness/rules/core.md`.
+1. Lies `harness/rules/core.md` und `harness/rules/project.md`.
 2. Wenn `harness/rules/project.md` fehlt oder noch Platzhalter enthält, führe
    einmal die Projektinitialisierung anhand von
    `harness/templates/project-init.md` durch. Ist das Projektprofil ausgefüllt,
    starte Project Init nicht erneut.
-3. Lies `harness/rules/project.md`.
-4. Lies bei Codeänderungen zusätzlich `harness/rules/code.md`.
-5. Lies bei jeder Änderung in `web/` zusätzlich `harness/rules/web.md`; bei
-   Teständerungen lies außerdem `harness/rules/testing.md`.
-6. Lies nur die für den Auftrag relevante Datei unter `specs/`, falls vorhanden.
-7. Bei neuem oder verändertem Verhalten formuliere zuerst eine kleine Spec nach
-   `harness/templates/story.md`. Reine Dokumentations- und interne
-   Refactoring-Aufgaben benötigen keine neue Story.
+3. Lies nur die relevante Spec unter `specs/terminal/` oder `specs/web/`.
+4. Bei Terminal-Code in `src/`, `tests/`, `data/` oder `scripts/` lies zusätzlich
+   `harness/rules/python.md`.
+5. Bei Web-Code in `web/` lies zusätzlich `harness/rules/code.md`,
+   `harness/rules/web.md` und bei Teständerungen `harness/rules/testing.md`.
+6. Bei neuem oder verändertem Verhalten formuliere zuerst eine kleine Spec nach
+   `harness/templates/story.md` im passenden Spec-Ordner. Reine Dokumentations-
+   und interne Refactoring-Aufgaben benötigen keine neue Story.
 
 ## Arbeitsweise
 
+- Terminal und Website sind getrennte Umsetzungen. Aktualisiere die Website nach
+  einer Terminaländerung nur auf ausdrücklichen Auftrag und mit eigener
+  Web-Story; ändere das Terminalspiel für eine Webänderung niemals automatisch.
 - Erkläre neue Konzepte kurz und verständlich.
 - Bevorzuge kleine, nachvollziehbare Schritte und vermeide verfrühte Abstraktion.
 - Übernimm aus Designreferenzen nur dokumentierte Gestaltungsprinzipien. Kopiere

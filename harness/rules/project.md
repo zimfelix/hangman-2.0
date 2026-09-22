@@ -1,77 +1,68 @@
-# Projektprofil: Hangman Web
+# Projektprofil: Hangman – Terminal und Web
 
 Diese Datei enthält ausschließlich Regeln und Fakten, die für dieses Repository
 gelten. Allgemeine Arbeitsregeln stehen in `core.md`.
 
-## Ziel und Erfahrungsniveau
+## Ziel und Lernstruktur
 
-- Das Projekt entwickelt schrittweise ein lokal ausführbares, responsives
-  Hangman-Webspiel.
-- Die bisherige Python-Konsolenversion wird durch die Website ersetzt und nicht
-  weiterentwickelt.
-- Das Projekt ist ein Lernprojekt; einfache, nachvollziehbare Lösungen haben
-  Vorrang vor Frameworks oder vorsorglichen Abstraktionen.
-- Das MVP umfasst eine spielbare Runde sowie Statistik in `localStorage`,
-  Schwierigkeitsstufen und eine JSON-Wortliste.
+- Dieses Repository enthält zwei getrennte Lernprojekte mit derselben fachlichen
+  Domäne: ein Python-Hangman im Terminal und ein lokales Hangman-Webspiel.
+- Der Terminalbestand bleibt eigenständig weiterentwickelbar. Die Website ist
+  eine separate Umsetzung, nicht sein automatisches Frontend.
+- Änderungen an einem Bereich ändern den anderen Bereich nicht. Soll eine
+  Terminaländerung in die Website übernommen werden, ist das ein ausdrücklich
+  beauftragter manueller Synchronisationsschritt mit eigener oder aktualisierter
+  Web-Story und eigenen Nachweisen.
+- Einfache, nachvollziehbare Lösungen haben Vorrang vor Frameworks oder
+  vorsorglichen Abstraktionen.
 
-## Technik
+## Terminalbereich
 
-- Sprache: TypeScript
-- Oberfläche: React als Single-Page Application (SPA), erstellt mit Vite
-- Laufzeit: Node.js in einer projektlokalen, per `package.json` dokumentierten
-  Version
-- Persistenz: `localStorage` ausschließlich für lokale Spielstatistik
-- Wortdaten: versionierte JSON-Datei im Frontend-Projekt
-- Unit-Tests: Vitest
-- Browser-Tests: Playwright
-- Linting und Formatierung: ESLint und Prettier
-- Quality Gate: `npm run verify` im Verzeichnis `web/`; der Befehl wird mit der
-  ersten Web-Bootstrap-Story eingerichtet und führt mindestens Linting,
-  Type-Check, Unit-Tests und relevante Playwright-Tests aus.
+- Code: `src/`, Daten: `data/`, Tests: `tests/`, Quality Gate:
+  `.venv/bin/python scripts/verify.py`.
+- Sprache: Python 3.14; Testframework: pytest; Linter: Ruff.
+- `src/main.py` verbindet die Terminaloberfläche in `src/frontend/` mit der
+  Spiellogik in `src/backend/`.
+- Backend-Code ruft weder `input()` auf noch gibt er sichtbare UI-Texte aus.
+- Terminal-Stories liegen in `specs/terminal/`.
+- Für Änderungen in diesem Bereich gelten zusätzlich `harness/rules/python.md`.
 
-## Architektur
+## Webbereich
 
-- `web/src/main.tsx` startet die Anwendung.
-- `web/src/app/` enthält App-Komposition, Routen und globale Provider.
-- `web/src/features/` enthält fachlich getrennte Spielfunktionen, zum Beispiel
-  Spielrunde, Statistik und Schwierigkeit.
-- `web/src/components/` enthält wiederverwendbare, fachlich neutrale UI-Teile.
-- `web/src/styles/` enthält globale Tokens und Basisstile; Komponenten verwenden
-  diese Designwerte statt frei gewählter Einzelwerte.
-- `web/src/data/` enthält die JSON-Wortliste und ihren Loader.
-- Spiellogik bleibt von React-Komponenten, Browser-APIs und sichtbaren Texten
-  unabhängig und ist direkt per Unit-Test prüfbar.
-- React-Komponenten stellen Zustand und Ergebnisse dar; sie entscheiden keine
-  Spielregeln.
-- Zugriffe auf `localStorage` werden in einer kleinen, testbaren
-  Persistenzgrenze gebündelt.
+- Code und Tests: `web/`; Quality Gate: `cd web && npm run verify`.
+- Sprache: TypeScript; React als Single-Page Application (SPA), erstellt mit
+  Vite; Laufzeit: Node.js in einer per `web/package.json` dokumentierten Version.
+- Persistenz: `localStorage` ausschließlich für lokale Spielstatistik;
+  Wortdaten: JSON-Datei im Frontend-Projekt.
+- Unit-Tests: Vitest; Browser-Tests: Playwright; Linting und Formatierung:
+  ESLint und Prettier.
+- `web/src/main.tsx` startet die Anwendung. `app/` enthält App-Komposition,
+  `features/` fachliche Funktionen, `components/` neutrale UI-Teile, `data/`
+  Wortdaten und `styles/` globale Design-Tokens.
+- Spiellogik bleibt von React-Komponenten und Browser-APIs unabhängig.
+  `localStorage`-Zugriffe liegen an einer kleinen Persistenzgrenze.
+- Web-Stories liegen in `specs/web/`. Für Änderungen in diesem Bereich gelten
+  zusätzlich `harness/rules/code.md`, `harness/rules/web.md` und
+  `harness/rules/testing.md`.
 
 ## Projektgrenzen
 
 - Die Website läuft lokal; Authentifizierung, Server, Datenbank,
   Mehrbenutzerbetrieb und Cloud-Synchronisation gehören nicht zum Umfang.
 - Keine externe Abhängigkeit ohne konkreten Nutzen für eine aktive Spec.
-- Bestehende Python-Dateien bleiben nur bis zur Web-Bootstrap-Story als
-  abzulösender Altbestand (legacy code) im Repository und werden nicht erweitert.
-- Das visuelle Referenzprofil steht verbindlich in `harness/rules/web.md` und
-  gilt nur für die Website. Sichtbare Spieltexte und zusätzliche
-  Spielinteraktionen werden in den jeweiligen Specs festgelegt.
-- Die Seite `https://speakki.de/` ist ausschließlich eine Designinspiration.
-  Deren Marke, Texte, Assets, Quellcode und Tracking gehören nicht zum Projekt.
+- Das visuelle Referenzprofil in `harness/rules/web.md` gilt ausschließlich für
+  die Website. `https://speakki.de/` ist nur Designinspiration: Marke, Texte,
+  Assets, Quellcode und Tracking werden nicht übernommen.
 
 ## Spec- und Testnachweis
 
 - Jede neue oder geänderte Nutzfunktion erhält vor der Implementierung eine
-  kleine Story nach `harness/templates/story.md`.
-- Jedes Akzeptanzkriterium erhält einen Nachweis: Unit-Tests für reine
-  Spiellogik, Playwright für sichtbare Browser-Abläufe oder begründete statische
-  bzw. manuelle Evidenz in der Spec.
-- Browser-Tests prüfen nur Akzeptanzkriterien und verwenden zugängliche Locators
-  (`getByRole`, `getByLabel`, `getByText`) vor `data-testid`.
-- Details stehen in `harness/rules/web.md` und `harness/rules/testing.md`.
-- Die Regeln in diesem Profil beschreiben die aktive Webebene. `src/`, `tests/`
-  und `scripts/verify.py` sind ausschließlich abzulösender Python-Altbestand,
-  bis die Web-Bootstrap-Story ihn entfernt.
+  kleine Story nach `harness/templates/story.md` im passenden Spec-Ordner.
+- Jedes Akzeptanzkriterium erhält einen Nachweis: passende Unit-Tests,
+  browserseitig sichtbare Abläufe mit Playwright oder begründete statische bzw.
+  manuelle Evidenz in der Spec.
+- Das Quality Gate des geänderten Bereichs ist vor `State: Implemented` grün.
+  Berührt eine Änderung beide Bereiche, laufen beide Quality Gates.
 
 ## Git-Delivery
 

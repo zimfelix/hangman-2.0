@@ -1,9 +1,8 @@
 # TypeScript- und React-Code-Regeln
 
-Diese Regeln gelten ausschließlich für Produktions- und Testcode der künftigen
-React-/Vite-Webanwendung unter `web/`. Sie gelten nicht für den abzulösenden
-Python-Altbestand. Architektur und Projektgrenzen stehen in `project.md`; Regeln
-für die Oberfläche und Tests in `web.md` und `testing.md`.
+Diese Regeln gelten ausschließlich für Produktions- und Testcode der
+React-/Vite-Webanwendung unter `web/`. Architektur und Projektgrenzen stehen in
+`project.md`; Regeln für die Oberfläche und Tests in `web.md` und `testing.md`.
 
 ## Lesbarkeit
 
