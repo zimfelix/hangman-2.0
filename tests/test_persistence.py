@@ -2,7 +2,7 @@
 
 import json
 
-from backend.persistence import load_statistics, save_statistics
+from backend.persistence import load_statistics, save_statistics_atomically
 
 
 def test_missing_statistics_start_empty(tmp_path) -> None:
@@ -18,7 +18,7 @@ def test_statistics_are_saved_and_loaded(tmp_path) -> None:
     path = tmp_path / "nested" / "statistics.json"
     statistics = {"wins": 3, "losses": 2}
 
-    save_statistics(path, statistics)
+    save_statistics_atomically(path, statistics)
 
     assert load_statistics(path) == statistics
 

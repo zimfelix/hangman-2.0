@@ -3,17 +3,19 @@
 from pathlib import Path
 
 from backend.game import Hangman
-from backend.persistence import load_statistics, save_statistics
-from backend.words import choose_word
+from backend.persistence import load_statistics, save_statistics_atomically
+from backend.words import choose_word, load_words
 from frontend import ui
 
 STATISTICS_PATH = Path("data/statistics.json")
+WORDS_PATH = Path("data/words.json")
 
-def play_round() -> bool:
+
+def play_round(words: list[str]) -> bool:
     """Play one complete round and return whether it was won."""
     ui.show_difficulty_menu()
     max_incorrect_guesses = ui.get_max_incorrect_guesses()
-    game = Hangman(choose_word(), max_incorrect_guesses)
+    game = Hangman(choose_word(words), max_incorrect_guesses)
 
     while not game.is_over:
         ui.show_game_state(game)
@@ -32,20 +34,21 @@ def main() -> None:
     ui.show_welcome()
 
     statistics = load_statistics(STATISTICS_PATH)
+    words = load_words(WORDS_PATH)
 
     while True:
         ui.show_main_menu()
         choice = ui.get_menu_choice()
 
         if choice == "1":
-            if play_round():
+            if play_round(words):
                 session_wins += 1
                 statistics["wins"] += 1
             else:
                 session_losses += 1
                 statistics["losses"] += 1
 
-            save_statistics(STATISTICS_PATH, statistics)
+            save_statistics_atomically(STATISTICS_PATH, statistics)
         elif choice == "2":
             ui.show_rules()
         elif choice == "3":

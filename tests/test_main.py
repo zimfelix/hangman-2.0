@@ -10,11 +10,11 @@ from main import play_round
 def test_play_round_uses_selected_difficulty(
     monkeypatch, max_incorrect_guesses: int
 ) -> None:
-    """Covers: S003-AK2."""
+    """Covers: S003-AK2, S005-AK4."""
     shown_games = []
     wrong_letters = iter("bcdefghi")
 
-    monkeypatch.setattr("main.choose_word", lambda: "a")
+    monkeypatch.setattr("main.choose_word", lambda words: "a")
     monkeypatch.setattr(ui, "show_difficulty_menu", lambda: None)
     monkeypatch.setattr(
         ui, "get_max_incorrect_guesses", lambda: max_incorrect_guesses
@@ -24,7 +24,7 @@ def test_play_round_uses_selected_difficulty(
     monkeypatch.setattr(ui, "show_guess_result", lambda result: None)
     monkeypatch.setattr(ui, "show_round_result", lambda game: None)
 
-    won = play_round()
+    won = play_round(["a"])
 
     assert not won
     assert shown_games[0].max_incorrect_guesses == max_incorrect_guesses

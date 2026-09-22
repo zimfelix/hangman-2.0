@@ -2,6 +2,9 @@
 
 Dieses Repository ist ein Python-Lernprojekt. Kommuniziere mit dem Nutzer auf
 Deutsch; Code, Dateinamen und Python-Bezeichner bleiben idiomatisch englisch.
+Verwende bei Erklärungen wichtige englische Fachbegriffe direkt in Klammern und
+füge bei Bedarf eine kurze englische Zusammenfassung hinzu, ohne das deutsche
+Verständnis zu ersetzen.
 
 ## Vor Änderungen
 
