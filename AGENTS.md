@@ -1,10 +1,12 @@
-# Hangman 2.0 – Agentenanweisungen
+# Hangman Web – Agentenanweisungen
 
-Dieses Repository ist ein Python-Lernprojekt. Kommuniziere mit dem Nutzer auf
-Deutsch; Code, Dateinamen und Python-Bezeichner bleiben idiomatisch englisch.
-Verwende bei Erklärungen wichtige englische Fachbegriffe direkt in Klammern und
-füge bei Bedarf eine kurze englische Zusammenfassung hinzu, ohne das deutsche
-Verständnis zu ersetzen.
+Dieses Repository ist ein TypeScript-/React-Lernprojekt für ein lokal
+laufendes Hangman-Webspiel. Der aktive Arbeitsbereich ist die künftige
+Webanwendung unter `web/`; der vorhandene Python-Konsolenbestand ist nur noch
+abzulösender Altbestand und wird nicht erweitert. Kommuniziere mit dem Nutzer
+auf Deutsch; Code, Dateinamen und technische Bezeichner bleiben idiomatisch
+englisch. Verwende bei Erklärungen wichtige englische Fachbegriffe direkt in
+Klammern.
 
 ## Vor Änderungen
 
@@ -15,8 +17,10 @@ Verständnis zu ersetzen.
    starte Project Init nicht erneut.
 3. Lies `harness/rules/project.md`.
 4. Lies bei Codeänderungen zusätzlich `harness/rules/code.md`.
-5. Lies nur die für den Auftrag relevante Datei unter `specs/`, falls vorhanden.
-6. Bei neuem oder verändertem Verhalten: Formuliere zuerst eine kleine Spec nach
+5. Lies bei jeder Änderung in `web/` zusätzlich `harness/rules/web.md`; bei
+   Teständerungen lies außerdem `harness/rules/testing.md`.
+6. Lies nur die für den Auftrag relevante Datei unter `specs/`, falls vorhanden.
+7. Bei neuem oder verändertem Verhalten formuliere zuerst eine kleine Spec nach
    `harness/templates/story.md`. Reine Dokumentations- und interne
    Refactoring-Aufgaben benötigen keine neue Story.
 
@@ -24,10 +28,10 @@ Verständnis zu ersetzen.
 
 - Erkläre neue Konzepte kurz und verständlich.
 - Bevorzuge kleine, nachvollziehbare Schritte und vermeide verfrühte Abstraktion.
-- Verändere Lernübungen nicht ungefragt grundlegend.
-- Bei offenen Produktentscheidungen oder mehrdeutigen Anforderungen frage vor
-  einer Spec oder Implementierung nach. Triff solche Entscheidungen nicht
-  eigenständig.
+- Übernimm aus Designreferenzen nur dokumentierte Gestaltungsprinzipien. Kopiere
+  niemals Marken, Texte, Assets, Quellcode oder Tracking fremder Websites.
+- Triff offene Produktentscheidungen nicht eigenständig; frage vor Spec oder
+  Implementierung nach.
 - Prüfe Änderungen im kleinstmöglichen sinnvollen Umfang.
 - Führe vor dem Story-State `Implemented` das passende Quality Gate aus.
 - Wende bei Fehlern die Korrekturschleife aus `harness/rules/core.md` an.

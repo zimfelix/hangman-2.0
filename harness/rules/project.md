@@ -1,40 +1,77 @@
-# Projektprofil: Hangman 2.0
+# Projektprofil: Hangman Web
 
 Diese Datei enthält ausschließlich Regeln und Fakten, die für dieses Repository
 gelten. Allgemeine Arbeitsregeln stehen in `core.md`.
 
 ## Ziel und Erfahrungsniveau
 
-- Das Projekt entwickelt schrittweise ein spielbares Hangman-Konsolenspiel.
-- Es ist zugleich ein Python-Lernprojekt für einen Coding-Anfänger.
-- Änderungen sollen verständlich bleiben und neue Konzepte kurz erklären.
-- Eine einfache funktionierende Lösung hat Vorrang vor zusätzlichen Frameworks
-  oder vorsorglichen Abstraktionen.
+- Das Projekt entwickelt schrittweise ein lokal ausführbares, responsives
+  Hangman-Webspiel.
+- Die bisherige Python-Konsolenversion wird durch die Website ersetzt und nicht
+  weiterentwickelt.
+- Das Projekt ist ein Lernprojekt; einfache, nachvollziehbare Lösungen haben
+  Vorrang vor Frameworks oder vorsorglichen Abstraktionen.
+- Das MVP umfasst eine spielbare Runde sowie Statistik in `localStorage`,
+  Schwierigkeitsstufen und eine JSON-Wortliste.
 
 ## Technik
 
-- Sprache: Python 3.14
-- Oberfläche: Terminal
-- Lokale Umgebung: `.venv`
-- Startbefehl: `.venv/bin/python src/main.py`
-- Testframework: pytest
-- Linter: Ruff
-- Quality Gate: `.venv/bin/python scripts/verify.py`
-- Konkrete Python-Codekonventionen stehen in `code.md`.
+- Sprache: TypeScript
+- Oberfläche: React als Single-Page Application (SPA), erstellt mit Vite
+- Laufzeit: Node.js in einer projektlokalen, per `package.json` dokumentierten
+  Version
+- Persistenz: `localStorage` ausschließlich für lokale Spielstatistik
+- Wortdaten: versionierte JSON-Datei im Frontend-Projekt
+- Unit-Tests: Vitest
+- Browser-Tests: Playwright
+- Linting und Formatierung: ESLint und Prettier
+- Quality Gate: `npm run verify` im Verzeichnis `web/`; der Befehl wird mit der
+  ersten Web-Bootstrap-Story eingerichtet und führt mindestens Linting,
+  Type-Check, Unit-Tests und relevante Playwright-Tests aus.
 
 ## Architektur
 
-- `src/main.py` startet die Anwendung und verbindet UI mit Spiellogik.
-- `src/frontend/` enthält `input()` und sichtbare Terminalausgaben.
-- `src/backend/` enthält Spielzustand, Spielregeln und Wortdaten.
-- Backend-Code darf weder `input()` aufrufen noch UI-Texte ausgeben.
-- UI-Code darf Spielregeln darstellen, aber nicht selbst entscheiden.
-- `tests/` enthält automatische Tests, vorrangig für die Spiellogik.
+- `web/src/main.tsx` startet die Anwendung.
+- `web/src/app/` enthält App-Komposition, Routen und globale Provider.
+- `web/src/features/` enthält fachlich getrennte Spielfunktionen, zum Beispiel
+  Spielrunde, Statistik und Schwierigkeit.
+- `web/src/components/` enthält wiederverwendbare, fachlich neutrale UI-Teile.
+- `web/src/styles/` enthält globale Tokens und Basisstile; Komponenten verwenden
+  diese Designwerte statt frei gewählter Einzelwerte.
+- `web/src/data/` enthält die JSON-Wortliste und ihren Loader.
+- Spiellogik bleibt von React-Komponenten, Browser-APIs und sichtbaren Texten
+  unabhängig und ist direkt per Unit-Test prüfbar.
+- React-Komponenten stellen Zustand und Ergebnisse dar; sie entscheiden keine
+  Spielregeln.
+- Zugriffe auf `localStorage` werden in einer kleinen, testbaren
+  Persistenzgrenze gebündelt.
 
 ## Projektgrenzen
 
-- Keine neue externe Abhängigkeit ohne konkreten Nutzen für eine aktive Spec.
-- Verhalten der Spiellogik muss ohne Terminaleingaben testbar bleiben.
+- Die Website läuft lokal; Authentifizierung, Server, Datenbank,
+  Mehrbenutzerbetrieb und Cloud-Synchronisation gehören nicht zum Umfang.
+- Keine externe Abhängigkeit ohne konkreten Nutzen für eine aktive Spec.
+- Bestehende Python-Dateien bleiben nur bis zur Web-Bootstrap-Story als
+  abzulösender Altbestand (legacy code) im Repository und werden nicht erweitert.
+- Das visuelle Referenzprofil steht verbindlich in `harness/rules/web.md` und
+  gilt nur für die Website. Sichtbare Spieltexte und zusätzliche
+  Spielinteraktionen werden in den jeweiligen Specs festgelegt.
+- Die Seite `https://speakki.de/` ist ausschließlich eine Designinspiration.
+  Deren Marke, Texte, Assets, Quellcode und Tracking gehören nicht zum Projekt.
+
+## Spec- und Testnachweis
+
+- Jede neue oder geänderte Nutzfunktion erhält vor der Implementierung eine
+  kleine Story nach `harness/templates/story.md`.
+- Jedes Akzeptanzkriterium erhält einen Nachweis: Unit-Tests für reine
+  Spiellogik, Playwright für sichtbare Browser-Abläufe oder begründete statische
+  bzw. manuelle Evidenz in der Spec.
+- Browser-Tests prüfen nur Akzeptanzkriterien und verwenden zugängliche Locators
+  (`getByRole`, `getByLabel`, `getByText`) vor `data-testid`.
+- Details stehen in `harness/rules/web.md` und `harness/rules/testing.md`.
+- Die Regeln in diesem Profil beschreiben die aktive Webebene. `src/`, `tests/`
+  und `scripts/verify.py` sind ausschließlich abzulösender Python-Altbestand,
+  bis die Web-Bootstrap-Story ihn entfernt.
 
 ## Git-Delivery
 
@@ -45,23 +82,9 @@ gelten. Allgemeine Arbeitsregeln stehen in `core.md`.
   weder automatisch committen noch pushen.
 - Eine abgeschlossene Story wird gemeinsam mit ihrem Code, ihren Tests und den
   nötigen Konfigurationsänderungen in einem nachvollziehbaren Commit gesichert.
-- Commit-Titel beginnen bei Story-Arbeit mit der Spec-ID, z. B. `S001: Terminal
-  Hangman game`.
+- Commit-Titel beginnen bei Story-Arbeit mit der Spec-ID, z. B. `S006: Bootstrap
+  Hangman web app`.
 - Kleine Änderungen ohne Spec erhalten einen passenden Präfix wie `fix:`,
   `refactor:` oder `docs:`.
 - Bei unklaren, fremden oder nicht zum Auftrag gehörenden Änderungen nicht
   automatisch committen oder pushen; zuerst darauf hinweisen.
-
-## Derzeit nicht festgelegt
-
-Diese Punkte sind Produktentscheidungen und werden in Specs festgelegt, nicht im
-Harness:
-
-- Sprache und genauer Wortlaut der Spieloberfläche
-- vollständiger Spielablauf und Anzahl erlaubter Fehlversuche
-- Auswahl oder Zufälligkeit der Wörter
-- Regeln für wiederholte und ungültige Eingaben
-- Umfang von Regeln, Highscore und erneutem Spielen
-
-Bis dazu eine Spec existiert, darf der Agent diese Entscheidungen nicht als feste
-Projektregeln behandeln.

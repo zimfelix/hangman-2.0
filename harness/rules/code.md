@@ -1,49 +1,56 @@
-# Python-Code-Regeln
+# TypeScript- und React-Code-Regeln
 
-Diese Regeln gelten für den Produktions- und Testcode dieses Projekts. Architektur
-und Projektgrenzen stehen in `project.md`.
+Diese Regeln gelten ausschließlich für Produktions- und Testcode der künftigen
+React-/Vite-Webanwendung unter `web/`. Sie gelten nicht für den abzulösenden
+Python-Altbestand. Architektur und Projektgrenzen stehen in `project.md`; Regeln
+für die Oberfläche und Tests in `web.md` und `testing.md`.
 
 ## Lesbarkeit
 
-- Halte dich an PEP 8.
-- Verwende englische, aussagekräftige Python-Bezeichner.
+- Verwende TypeScript mit aktivem strict mode; `any` ist nicht erlaubt.
+- Verwende englische, aussagekräftige Bezeichner und idiomatisches `camelCase`
+  für Werte und Funktionen sowie `PascalCase` für React-Komponenten und Typen.
 - Bevorzuge einfachen, direkten Code gegenüber cleveren Kurzformen.
-- Halte Kontrollflüsse möglichst flach und verwende frühe Rückgaben, wenn sie die
-  Lesbarkeit verbessern.
-- Entferne unbenutzten und auskommentierten Code.
+- Halte Kontrollflüsse flach und entferne unbenutzten oder auskommentierten Code.
+- Produktionscode, Kommentare und technische Texte sind Englisch; die
+  Sprache sichtbarer Spieltexte wird in der jeweiligen Spec festgelegt.
 
-## Funktionen und Klassen
+## Module und Komponenten
 
-- Eine Funktion erfüllt eine klar erkennbare Aufgabe.
-- Übergib benötigte Werte als Parameter und gib Ergebnisse mit `return` zurück.
-- Vermeide versteckte globale Zustände.
-- Verwende eine Klasse, wenn zusammengehöriger Zustand und Verhalten gemeinsam
-  verwaltet werden; verwende keine Klasse nur als Sammlung von Funktionen.
-- Führe Abstraktionen erst ein, wenn sie eine aktuelle Anforderung vereinfachen.
+- Ein Modul und eine React-Komponente haben eine klar erkennbare Aufgabe.
+- Verwende Funktionen für zustandslose Fachlogik; führe Klassen nur ein, wenn
+  zusammengehöriger Zustand und Verhalten dies aktuell vereinfachen.
+- Halte Spiellogik als reine Funktionen: Übergib den Spielzustand und Eingaben
+  explizit und gib den nächsten Zustand bzw. ein Ergebnis zurück.
+- Kapsle Browser-Seiteneffekte wie `localStorage` und Timer außerhalb der
+  Spiellogik.
+- Wiederverwendbare UI-Teile erhalten klare Props; vermeide globale,
+  versteckte Zustände.
+- Globale Designwerte liegen in `src/styles/` als CSS-Tokens. Komponenten
+  verwenden diese Tokens und enthalten keine willkürlichen Farb-, Abstand- oder
+  Schattenwerte.
+- Bevorzuge semantische HTML-Elemente und native Controls. Interaktive Icons
+  erhalten einen zugänglichen Namen; visuelle Zustände bleiben textlich und für
+  assistive Technologien verständlich.
+- Führe Abstraktionen erst ein, wenn eine aktive Anforderung sie vereinfacht.
 
-## Grenzen und Testbarkeit
+## Fehler und Daten
 
-- Halte `input()` und sichtbare `print()`-Ausgaben im Frontend.
-- Halte Spielregeln und Spielzustand unabhängig von der Terminaloberfläche.
-- Fachlogik soll mit direkten Funktions- oder Methodenaufrufen testbar sein.
-- Tests prüfen beobachtbares Verhalten und keine unnötigen Implementierungsdetails.
+- Validiere externe Daten, insbesondere die JSON-Wortliste, an ihrer
+  Ladegrenze.
+- Behandle erwartbare Fehler kontrolliert und zeige in der Oberfläche einen
+  verständlichen, handlungsfähigen Zustand statt eines leeren Bereichs.
+- Fange keine unbekannten Fehler ohne konkreten Umgang ab und verschweige keine
+  Fehler still.
+- Prüfe Daten vor dem Speichern in `localStorage`; bei nicht lesbaren oder
+  ungültigen gespeicherten Daten wird ein in der Spec definierter sicherer
+  Ausgangszustand verwendet.
 
-## Fehler und Eingaben
+## Tests und Änderungen
 
-- Behandle erwartbare ungültige Eingaben kontrolliert.
-- Fange keine allgemeinen Exceptions ohne konkreten Umgang mit dem Fehler ab.
-- Verwende eindeutige Rückgabewerte oder gezielte Exceptions statt stiller Fehler.
-
-## Kommentare und Dokumentation
-
-- Kommentare erklären das Warum, nicht offensichtliche Codezeilen.
-- Docstrings sind für Module sowie für nicht selbsterklärende öffentliche Funktionen
-  und Klassen sinnvoll.
-- Produktionscode, Kommentare und Docstrings verwenden Englisch; die Sprache der
-  Spieloberfläche wird in den jeweiligen Specs festgelegt.
-
-## Änderungsumfang
-
+- Unit-Tests prüfen Fachlogik und Persistenzgrenzen ohne Browser.
+- Komponenten- und Browser-Tests prüfen beobachtbares Verhalten, keine
+  unnötigen Implementierungsdetails.
 - Ändere nur Code, der für die aktive Spec oder eine notwendige direkte Folge
   relevant ist.
-- Ein Refactoring darf das beobachtbare Verhalten nicht unbemerkt verändern.
+- Ein Refactoring darf beobachtbares Verhalten nicht unbemerkt verändern.
