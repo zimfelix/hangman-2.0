@@ -19,7 +19,6 @@
   --color-primary: #2563eb;
   --color-primary-hover: #1d4ed8;
   --color-primary-soft: #eff6ff;
-  --color-success: #15803d;
   --color-error: #b91c1c;
   --radius-control: 0.75rem;
   --radius-card: 1.5rem;
@@ -30,6 +29,9 @@
 * {
   box-sizing: border-box;
 }
+html {
+  scroll-behavior: smooth;
+}
 body {
   margin: 0;
   min-width: 20rem;
@@ -38,50 +40,13 @@ body {
 button {
   font: inherit;
 }
+a {
+  color: inherit;
+}
 button:focus-visible,
 a:focus-visible {
   outline: 3px solid var(--color-primary);
   outline-offset: 3px;
-}
-
-.app-shell {
-  min-height: 100vh;
-}
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 72.5rem;
-  margin: 0 auto;
-  padding: 1.25rem 1rem;
-  border-bottom: 1px solid var(--color-line);
-}
-.brand {
-  color: var(--color-text);
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  text-decoration: none;
-}
-.brand span {
-  color: var(--color-primary);
-}
-.page-content {
-  width: min(100% - 2rem, 42rem);
-  margin: 0 auto;
-  padding: 3rem 0 4rem;
-}
-.intro {
-  max-width: 37rem;
-  margin-bottom: 2rem;
-}
-.eyebrow {
-  margin: 0;
-  color: var(--color-primary);
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
 }
 h1,
 h2,
@@ -89,26 +54,210 @@ h3,
 p {
   margin-top: 0;
 }
+h1,
+h2,
+h3 {
+  letter-spacing: -0.04em;
+}
 h1 {
-  margin-bottom: 0.85rem;
-  font-size: clamp(2.25rem, 8vw, 3.75rem);
-  line-height: 1.04;
-  letter-spacing: -0.055em;
+  margin-bottom: 1.15rem;
+  font-size: clamp(2.7rem, 9vw, 5.25rem);
+  line-height: 0.98;
 }
 h2 {
-  margin-bottom: 0;
-  font-size: 1.5rem;
-  letter-spacing: -0.035em;
+  margin-bottom: 0.85rem;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.08;
 }
-.intro > p:last-child,
-.mistake-count,
-.guessed-letters {
+h3 {
+  margin-bottom: 0.55rem;
+  font-size: 1.25rem;
+}
+
+.app-shell {
+  min-height: 100vh;
+  overflow: hidden;
+}
+.topbar {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 4.75rem;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--color-line);
+  background: var(--color-surface);
+}
+.brand {
+  color: var(--color-text);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.brand span {
+  color: var(--color-primary);
+}
+.main-nav {
+  display: flex;
+  order: 3;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.main-nav a,
+.footer a,
+.footer-link {
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.main-nav a:hover,
+.footer a:hover,
+.footer-link:hover {
+  color: var(--color-primary);
+}
+
+.hero,
+.section,
+.footer {
+  width: min(100% - 2rem, 72.5rem);
+  margin: 0 auto;
+}
+.hero {
+  display: grid;
+  gap: 2rem;
+  padding: 5rem 0 4rem;
+}
+.hero__content {
+  max-width: 43rem;
+}
+.hero__content > p:not(.eyebrow),
+.section-heading > p:last-child,
+.hero-card p,
+.benefit-card p,
+.plan-detail,
+.section--about > p,
+.footer p {
   color: var(--color-muted);
-  line-height: 1.6;
+  line-height: 1.65;
+}
+.eyebrow {
+  margin-bottom: 0.75rem;
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+.primary-button,
+.secondary-button,
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  border-radius: var(--radius-control);
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+.primary-button {
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary);
+  color: white;
+  padding: 0.75rem 1rem;
+}
+.primary-button:hover {
+  background: var(--color-primary-hover);
+}
+.secondary-button {
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding: 0.55rem 0.85rem;
+  cursor: pointer;
+}
+.secondary-button:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.text-link {
+  min-height: auto;
+  color: var(--color-primary);
+  padding: 0.5rem 0;
+}
+.hero-card {
+  display: grid;
+  align-content: space-between;
+  min-height: 15rem;
+  padding: 1.5rem;
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-card);
+  background: var(--color-primary-soft);
+}
+.hero-card strong {
+  max-width: 18rem;
+  font-size: clamp(1.5rem, 5vw, 2.15rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+.status-chip,
+.plan-label {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.42rem 0.7rem;
+  border-radius: 999px;
+  background: var(--color-primary-soft);
+  color: var(--color-primary-hover);
+  font-size: 0.78rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.section {
+  padding: 4.5rem 0;
+  scroll-margin-top: 5rem;
+}
+.section-heading {
+  max-width: 43rem;
+  margin-bottom: 2rem;
+}
+.section-heading > p:last-child {
+  margin-bottom: 0;
+}
+.section--game {
+  width: min(100% - 2rem, 42rem);
+}
+.section--muted {
+  width: 100%;
+  padding-right: max(1rem, calc((100% - 72.5rem) / 2));
+  padding-left: max(1rem, calc((100% - 72.5rem) / 2));
+  background: #f1f5f9;
 }
 .game-card,
 .error-card,
-.dialog {
+.dialog,
+.benefit-card,
+.pricing-card {
   border: 1px solid var(--color-line);
   border-radius: var(--radius-card);
   background: var(--color-surface);
@@ -118,7 +267,8 @@ h2 {
 .error-card {
   padding: 1.5rem;
 }
-.start-card .eyebrow {
+.start-card .eyebrow,
+.round-header .eyebrow {
   margin-bottom: 0.65rem;
 }
 .difficulty-grid {
@@ -159,18 +309,6 @@ h2 {
   justify-content: space-between;
   gap: 1rem;
 }
-.round-header .eyebrow {
-  margin-bottom: 0.65rem;
-}
-.status-chip {
-  padding: 0.45rem 0.7rem;
-  border-radius: 999px;
-  background: var(--color-primary-soft);
-  color: var(--color-primary-hover);
-  font-size: 0.8rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
 .hangman-figure {
   display: block;
   width: min(100%, 15rem);
@@ -189,6 +327,11 @@ h2 {
   overflow-wrap: anywhere;
   text-align: center;
 }
+.mistake-count,
+.guessed-letters {
+  color: var(--color-muted);
+  line-height: 1.6;
+}
 .mistake-count {
   margin-bottom: 1.5rem;
   text-align: center;
@@ -203,9 +346,7 @@ h2 {
   gap: 0.45rem;
 }
 .letter-button,
-.icon-button,
-.primary-button,
-.secondary-button {
+.icon-button {
   border-radius: var(--radius-control);
   cursor: pointer;
   font-weight: 700;
@@ -234,27 +375,6 @@ h2 {
   margin: 1rem 0 0;
   font-size: 0.9rem;
 }
-.primary-button {
-  min-height: 3rem;
-  border: 1px solid var(--color-primary);
-  background: var(--color-primary);
-  color: white;
-  padding: 0.75rem 1rem;
-}
-.primary-button:hover {
-  background: var(--color-primary-hover);
-}
-.secondary-button {
-  min-height: 2.5rem;
-  border: 1px solid var(--color-line);
-  background: var(--color-surface);
-  color: var(--color-text);
-  padding: 0.5rem 0.8rem;
-}
-.secondary-button:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-}
 .result-panel {
   margin-top: 1.5rem;
   padding: 1rem;
@@ -269,14 +389,125 @@ h2 {
   border-color: #fecaca;
   color: var(--color-error);
 }
-.error-card h2 {
-  font-size: 1.1rem;
-}
 .error-card p {
-  margin: 0.5rem 0 0;
+  margin-bottom: 0;
+}
+
+.benefit-grid,
+.pricing-grid {
+  display: grid;
+  gap: 1rem;
+}
+.benefit-card,
+.pricing-card {
+  padding: 1.4rem;
+}
+.benefit-number {
+  display: inline-block;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.benefit-card p {
+  margin-bottom: 0;
+}
+.pricing-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 25rem;
+}
+.pricing-card--featured {
+  border-color: #93c5fd;
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.14);
+}
+.plan-label {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.plan-detail {
+  min-height: 3.5rem;
+  margin-bottom: 1.35rem;
+}
+.plan-price {
+  margin-bottom: 1.5rem;
+  font-size: 2.55rem;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+}
+.plan-price span {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.pricing-card ul {
+  display: grid;
+  gap: 0.7rem;
+  flex: 1;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+  color: #334155;
+  font-size: 0.93rem;
+}
+.pricing-card li::before {
+  content: '✓';
+  margin-right: 0.65rem;
+  color: var(--color-primary);
+  font-weight: 800;
+}
+.section--about {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2.25rem;
+  border: 1px solid #1e293b;
+  border-radius: var(--radius-card);
+  background: #0f172a;
+  color: white;
+}
+.section--about .eyebrow {
+  color: #93c5fd;
+}
+.section--about h2 {
+  margin-bottom: 0;
+}
+.section--about > p {
+  margin: 0;
+  color: #cbd5e1;
+}
+
+.footer {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--color-line);
+}
+.footer p {
+  margin: 0.6rem 0 0;
+  font-size: 0.9rem;
+}
+.footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.footer__note {
+  color: #94a3b8 !important;
+  font-size: 0.78rem !important;
 }
 .dialog-backdrop {
   position: fixed;
+  z-index: 20;
   inset: 0;
   display: grid;
   place-items: center;
@@ -334,17 +565,26 @@ h2 {
   letter-spacing: -0.04em;
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 48rem) {
   .topbar {
-    padding: 1.5rem 2rem;
+    flex-wrap: nowrap;
+    padding-right: 2rem;
+    padding-left: 2rem;
   }
-  .page-content {
-    padding-top: 4.5rem;
+  .main-nav {
+    order: 0;
+    width: auto;
+    justify-content: initial;
+    gap: 1.35rem;
   }
-  .game-card,
-  .error-card,
-  .dialog {
-    padding: 2rem;
+  .hero {
+    grid-template-columns: 1.3fr 0.7fr;
+    align-items: stretch;
+    padding: 7rem 0 5.5rem;
+  }
+  .section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
   }
   .difficulty-grid,
   .statistics-grid {
@@ -360,6 +600,18 @@ h2 {
   }
   .letter-grid {
     grid-template-columns: repeat(10, 1fr);
+  }
+  .benefit-grid,
+  .pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .section--about {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+  .footer {
+    grid-template-columns: 1.4fr 1fr auto;
+    align-items: start;
   }
 }
 

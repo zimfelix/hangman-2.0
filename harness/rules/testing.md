@@ -37,7 +37,10 @@ Diese Regeln ergänzen `core.md` für Vitest und Playwright.
 
 ## Quality Gate
 
-- `npm run verify` bündelt Linting, Type-Check, Unit-Tests und die für die
-  Änderung relevanten Playwright-Tests.
+- `npm run verify` bündelt Formatprüfung, Linting, Type-Check, Unit-Tests,
+  automatische Web-Spec-Abdeckung, Build und Playwright-Tests.
+- `npm run spec:check` prüft für jede Story unter `specs/web/` einen gültigen
+  State und für jedes AK einen Testmarker oder einen bestandenen statischen bzw.
+  manuellen Nachweis.
 - Ein fehlgeschlagener Check wird als Code-, Test- oder Spec-Problem eingeordnet,
   gezielt korrigiert und vollständig wiederholt.

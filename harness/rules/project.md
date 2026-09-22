@@ -35,7 +35,9 @@ gelten. Allgemeine Arbeitsregeln stehen in `core.md`.
 - Persistenz: `localStorage` ausschließlich für lokale Spielstatistik;
   Wortdaten: JSON-Datei im Frontend-Projekt.
 - Unit-Tests: Vitest; Browser-Tests: Playwright; Linting und Formatierung:
-  ESLint und Prettier.
+  ESLint und Prettier. `npm run spec:check` prüft die AK-Abdeckung der
+  Web-Stories; `npm run verify` führt diesen Check mit allen weiteren
+  Web-Qualitätsprüfungen aus.
 - `web/src/main.tsx` startet die Anwendung. `app/` enthält App-Komposition,
   `features/` fachliche Funktionen, `components/` neutrale UI-Teile, `data/`
   Wortdaten und `styles/` globale Design-Tokens.
@@ -50,6 +52,10 @@ gelten. Allgemeine Arbeitsregeln stehen in `core.md`.
 - Die Website läuft lokal; Authentifizierung, Server, Datenbank,
   Mehrbenutzerbetrieb und Cloud-Synchronisation gehören nicht zum Umfang.
 - Keine externe Abhängigkeit ohne konkreten Nutzen für eine aktive Spec.
+- Für reine Webprototypen darf der Agent passende Texte, Abschnittsreihenfolgen,
+  Dummy-Preise und visuelle Detailentscheidungen selbst treffen. Echte Zahlungen,
+  Verträge, externe Dienste und irreversible Folgen bleiben Produktentscheidungen
+  mit vorheriger Rückfrage.
 - Das visuelle Referenzprofil in `harness/rules/web.md` gilt ausschließlich für
   die Website. `https://speakki.de/` ist nur Designinspiration: Marke, Texte,
   Assets, Quellcode und Tracking werden nicht übernommen.
