@@ -3,7 +3,7 @@
 from pathlib import Path
 
 from backend.game import Hangman
-from backend.persistence import load_statistics, save_statistics_atomically
+from backend.persistence_v1 import load_statistics, save_statistics_atomically
 from backend.words import choose_word, load_words
 from frontend import ui
 

@@ -2,7 +2,7 @@
 
 import json
 
-from backend.persistence import load_statistics, save_statistics_atomically
+from backend.persistence_v1 import load_statistics, save_statistics_atomically
 
 
 def test_missing_statistics_start_empty(tmp_path) -> None:
