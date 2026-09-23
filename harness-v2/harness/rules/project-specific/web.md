@@ -1,5 +1,24 @@
-# Web-Regeln
+# Web-Bereich
 
-**Status:** Pending Project Init – optional. Der Agent befüllt diese Datei bei Bedarf nach `harness/templates/project-init.md`; bis dahin keine geltende Regel.
+Gilt nur für `web/`. Die vorhandene React-/TypeScript-/Vite-SPA bleibt eine
+unabhängige lokale Umsetzung, kein Frontend der Terminalanwendung.
 
-Diese Datei ist ein optionales Regelpaket für Webprojekte und ihre konkreten Plattformanforderungen. Sie beschreibt nur die UI-, Browser-, Netzwerk- und Zugänglichkeitsregeln, die für das betreffende Projekt gelten. Sie verweist auf die dazu passenden Tests und Quality Gates. Sie wird nur geladen, wenn eine Aufgabe den Webbereich betrifft. Ein anderes Projekt muss diese Vorgaben nicht übernehmen.
+- `src/features/game/` enthält die Spielregeln; `src/app/App.tsx` komponiert
+  Landingpage, Spiel und Sitzungszustand. Die Trennung von Regeln und
+  Seiteneffekten steht in `code.md`. `src/features/statistics/` bündelt die
+  Funktionen für `localStorage`; die eigene Wortliste liegt unter `src/data/`.
+  Nur die Gesamtstatistik ist dauerhaft lokal; keine Netzwerkintegration
+  oder Zahlungen erfinden.
+- Das CSS ist mobile-first angelegt: Bei Änderungen schmale und breite Ansichten
+  ohne horizontales Scrollen prüfen. Für Spiel, Navigation und Statistikdialog
+  semantische Elemente, Tastaturbedienung inklusive Dialogfokus, sichtbaren
+  Fokus, verständliche Status- und Fehlermeldungen und zugängliche Namen und
+  Kontraste prüfen. `prefers-reduced-motion` berücksichtigen. Tokens und
+  Responsive-Regeln stehen in `src/styles/global.css`. Ein grüner axe-Scan
+  ersetzt keinen gezielten Tastaturtest (siehe `quality-matrix.md`).
+- Landingpage-Pakete sind ausschließlich Designprototypen. Externe
+  Designreferenzen liefern höchstens Prinzipien; keine fremden Marken,
+  Texte, Assets, Quellen oder Tracking übernehmen.
+- Für Webänderungen das Web-Gate aus `project.md` anwenden; Vitest und
+  Playwright/axe-Nachweise und ihre Grenzen stehen in `testing.md` und
+  `quality-matrix.md`.

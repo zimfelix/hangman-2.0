@@ -78,7 +78,8 @@ Aggregiertes V2-Gate (führt Terminal, Web, V2-Unit-Tests und V2-Ruff einmal aus
 | `harness-v2/harness/rules/universal/ideas.md`, `quality.md` | Klärung bzw. Auswahl von Nachweisen. |
 | `harness-v2/harness/templates/idea.md`, `story.md`, `project-init.md` | Artefaktformen und einmalige Projektinit. |
 | `harness-v2/harness/rules/project-specific/project.md` | Projektziel, Grenzen, Architektur und Gate-Einstieg. |
-| `harness-v2/harness/rules/project-specific/python.md`, `web.md`, `testing.md` | Bereichs- und Testkonventionen nur bei Bedarf. `code.md` bleibt `Pending Project Init`. |
+| `harness-v2/harness/rules/project-specific/code.md` | Gemeinsame Code- und Architekturkonventionen. |
+| `harness-v2/harness/rules/project-specific/python.md`, `web.md`, `testing.md` | Bereichs- und Testkonventionen nur bei Bedarf. |
 | `harness-v2/harness/rules/project-specific/quality-matrix.md` | Zuordnung der Bereichsnachweise ohne zweite Befehlsquelle. |
 | `harness-v2/harness/rules/project-specific/quality-gate.json`, `harness-v2/scripts/verify.py` | Ausführbare Gate-Checks und Runner. |
 | `specs/`, `harness-v2/ideas/`, `harness-v2/learning-state.md` | Anforderungen, offene Vorhaben und manuell gesammeltes Wissen – keine Regeln. |

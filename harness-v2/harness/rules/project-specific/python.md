@@ -1,5 +1,15 @@
-# Python-Regeln
+# Python-Bereich: Terminalspiel
 
-**Status:** Pending Project Init – optional. Der Agent befüllt diese Datei bei Bedarf nach `harness/templates/project-init.md`; bis dahin keine geltende Regel.
+Gilt für `src/`, `tests/`, `data/` und `scripts/`. Python >=3.14; die
+Konfiguration steht in `pyproject.toml`. Starte die Anwendung vom Repository-
+Root (relative Pfade in `src/main.py`).
 
-Diese Datei ist ein optionales Regelpaket für Projektbereiche, die Python verwenden. Sie beschreibt die für das jeweilige Projekt vereinbarten Python-Konventionen und Architekturgrenzen. Sie verweist auf Formatter, Linter, Typprüfung und Tests, sofern diese eingerichtet sind. Sie wird nur geladen, wenn eine Aufgabe Python-Code betrifft. Projektspezifische Entscheidungen haben Vorrang vor allgemeinen Beispielen.
+- `src/main.py` orchestriert `src/frontend/ui.py` und `src/backend/`.
+  Benutzereingaben und deutsche Ausgabetexte gehören nach `src/frontend/ui.py`;
+  die gemeinsame Trennung von Regeln und I/O steht in `code.md`.
+- Wortdaten und Gesamtstatistik sind getrennte JSON-Dateien unter `data/`.
+  `src/backend/words.py` lädt die Wortliste ohne eingebettete Ersatzliste.
+  Die aktive Statistikpersistenz ist `src/backend/persistence_v1.py`, nicht
+  das zusätzliche `persistence_v2.py`-Lernbeispiel.
+- Neue Python-Änderungen mit der vorhandenen pytest-Suite und Ruff nachweisen;
+  Gate und genaue Checks stehen in `project.md` und `quality-gate.json`.

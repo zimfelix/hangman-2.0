@@ -1,5 +1,17 @@
-# Projektbezogene Qualitätsmatrix
+# Qualitätsmatrix: getrennte Bereiche
 
-**Status:** Pending Project Init – optional. Der Agent befüllt diese Datei bei Bedarf nach `harness/templates/project-init.md`; bis dahin keine geltende Regel.
+Die Gates und ihr Einstieg stehen in `project.md`, ihre Ausführung in
+`quality-gate.json` bzw. den bestehenden Bereichsskripten. Die Auswahlprinzipien
+stehen in `../universal/quality.md`.
 
-Diese Datei ordnet die Qualitätsarten den konkreten Bereichen und Risiken des Projekts zu. Sie beschreibt, welche Prüfungen für welche Teile der Anwendung gelten und welche nicht anwendbar sind. Sie verweist auf das eingerichtete Gate, statt Befehle zu duplizieren, und dokumentiert Grenzen der Nachweise. Sie wird an Projektarchitektur und Testwerkzeuge angepasst. Die universellen Auswahlgrundsätze stehen in `harness/rules/universal/quality.md`.
+| Risiko / Nachweis | Terminal | Web | Grenze |
+|---|---|---|---|
+| Regeln und Daten | pytest: Spiel, Eingaben, Wortauswahl, JSON-Persistenz | Vitest: Spiellogik, JSON-Wortliste, Storage-Fake | Kein geteilter Datenvertrag zwischen den Bereichen. |
+| Zusammenspiel / Nutzerweg | pytest mit simulierten Eingaben und `main.py` | Playwright/Chromium gegen Produktionsbuild und `vite preview` | Terminal braucht keinen Browser; Web hat keine API/DB. |
+| Regression / statisch | Volle pytest-Suite, Ruff, `compileall`, AK-Marker | Vitest, E2E, Prettier, ESLint, strict TypeScript, AK-Marker, Vite-Build | Marker sind keine inhaltliche Testprüfung. |
+| Accessibility | Verständliche Terminalhinweise in UI-Tests | Playwright: mobile Breite, zugängliche Namen und axe-core-Scan | Tastatur/Fokus und Screenreader sind dadurch nicht vollständig nachgewiesen; bei Interaktionsänderungen gezielt manuell prüfen. |
+| Harness V2 | V2-Runner-Unit-Tests und Ruff | Nicht als Web-Test duplizieren | V2-Gate orchestriert Bereichsprüfungen, ruft sich nicht selbst auf. |
+
+Kein gesonderter Last-, API-, Datenbank-, Deployment- oder Security-Scan ohne
+passenden konkreten Befund bzw. neue Schnittstelle. Bei beiden betroffenen
+Bereichen beide Gates ausführen; keine automatische Synchronisation.
