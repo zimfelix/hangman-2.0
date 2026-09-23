@@ -1,19 +1,66 @@
 # Learning State – Harness V2
 
-Diese Datei ist der lokale Zwischenspeicher für neue Erkenntnisse und den Arbeitsstand dieses Vorhabens. Wenn Felix sagt „Das ist ein neuer Kern“, „Speicher dieses Wissen ab“ oder sinngemäß eine Erkenntnis für später festhalten möchte, ergänze sie hier kurz; markiere Ungeprüftes als offen und verwerfe es nicht stillschweigend. Lies diese Datei bei der Fortsetzung der Harness-V2-Arbeit, statt frühere Chats vorauszusetzen. Übertrage nichts automatisch in die globalen `AGENTS.md`-Dateien (`~/.pi/agent/AGENTS.md` und `~/.codex/AGENTS.md`): Erst auf ausdrücklichen Wunsch werden die gesammelten Punkte geprüft, verdichtet und nur dauerhaft nützliche, projektübergreifende Erkenntnisse dort übernommen. „Projektspezifische AGENTS.md“ meint stets die Datei im aktuellen Projekt.
+Lokale Sammelstelle für Erkenntnisse aus diesem Projekt. Ich ergänze sie nur,
+wenn Felix ausdrücklich sagt, etwas zu speichern oder eine Zusammenfassung hier
+festzuhalten. Einträge bleiben kurz; Unsicheres wird als offen markiert.
 
-## Neue Erkenntnisse – Zwischenspeicher
+Bei „Übertrage/pushe den Learning State in die globale/universelle AGENTS.md“
+kuratiere ich nur übertragbare Learnings und aktualisiere die globalen Ziele
+`~/.pi/agent/AGENTS.md` und `~/.codex/AGENTS.md` gemäß deren Regeln. Ich kopiere
+nicht die ganze Datei. „Push“ meint in diesem Zusammenhang das Übertragen der
+Erkenntnisse in diese Dateien, nicht `git push`.
 
-- **Bestätigt:** Universelle Regeln und Templates sollen im fertigen Starter-Kit ausgearbeitet sein; projektbezogene Richtlinien erhalten ihren konkreten Inhalt erst bei Project Init.
-- **Bestätigt:** Der Learning State sammelt zunächst neue Learnings und offene Überlegungen. Eine spätere Übernahme in beide globalen `AGENTS.md`-Dateien ist ein bewusster, getrennter Schritt.
-- **Bestätigt:** Jede Harness-Regel hat einen zuständigen Ort. Vor neuen Regeln thematisch benachbarte Dateien und danach den Diff auf inhaltliche Doppelungen prüfen; sonst nur verlinken.
+## Gesammelte Erkenntnisse
 
-## Arbeitsstand
+- **Bestätigt:** Der universelle Core bleibt projektübergreifend stabil;
+  Unterschiede gehören in Projektprofile oder bedarfsgeladene Regeln.
+- **Bestätigt:** Ideas klären größere, offene Vorhaben; Specs beschreiben
+  beauftragtes, überprüfbares Verhalten.
+- **Bestätigt:** Qualitätsarten helfen passende Nachweise auszuwählen und sind
+  kein Pflichtpaket für jedes Projekt.
+- **Bestätigt:** Die zehn Projektebenen sind ein Relevanz- und Lückencheck,
+  keine Pflicht zu zehn Dokumenten.
+- **Bestätigt:** Harness-Regeln haben je einen zuständigen Ablageort; vor neuen
+  Regeln benachbarte Dateien auf Dopplungen und Widersprüche prüfen.
+- **Bestätigt:** Davids Tielkes Repository ist Struktur- und Begriffsreferenz;
+  seine projektspezifischen CRM-, C#- und UI-Vorgaben werden nicht pauschal
+  übernommen.
+- **Bestätigt:** Universelle Regeln und Templates werden im Starter-Kit
+  ausgearbeitet; Projektregeln erhalten ihren konkreten Inhalt bei Project Init.
 
-**Ziel:** Ein kopierbares Level-2-Starter-Kit für unterschiedliche neue Projekte, nicht ein weiterer Hangman-Harness.
+## Lernstoff angerissen – weiter vertiefen
 
-**Entschieden:** Universelle Regeln und Templates sollen im fertigen Starter-Kit bereits vollständig gelten. Vorgesehene Projektrichtlinien sind schon als Markdown-Dateien sichtbar, tragen aber bis zur Definition im neuen Projekt `Pending Project Init`. Project Init definiert das Projektprofil und nur benötigte optionale Richtlinien; andere bleiben erkennbar offen. Das Quality Gate scheitert ohne projektspezifisch konfigurierte, ausführbare Checks. Ideas klären große Vorhaben; Specs halten konkrete beauftragte Änderungen fest. Global bestätigte Learnings stehen in den Agent-Anweisungen von Pi und Codex.
+Diese Themen wurden besprochen; die Liste hält den Lernpfad fest und behauptet
+nicht, dass sie bereits sicher beherrscht werden.
 
-**Stand:** Die vorgesehenen Projektrichtlinien und der Fail-Closed-Gate-Runner sind angelegt; isolierte Runner-Tests und Ruff sind grün. `universal/core.md` und `templates/story.md` sind aus V1 abgeleitet und für V2 ausgearbeitet; der Core bewahrt ausdrücklich Specs als Quelle, AK-Nachweise, Gate-Korrekturschleife und sichere Lieferung und ergänzt Freigabegrenzen, gezielte Neubewertung bei Scope-Wachstum und Diff-Prüfung. `universal/ideas.md`, `universal/quality.md` und `templates/idea.md` sind noch Aufgabenbeschreibungen. Die V2-Idea und Entwicklungs-Specs sind keine Dateien zum Kopieren in neue Projekte.
-
-**Nächster Schritt:** Den Core an klarer Änderung, unklarer Idea, Bugfix ohne neue Spec und unerwarteter Integration prüfen. Danach Ideas-Regel und -Vorlage sowie Quality-Regel schrittweise ausarbeiten; anschließend an unterschiedlichen Projektarten testen und ein neues Projekt testweise initialisieren. Keine automatische Übernahme in den bestehenden Hangman-Harness.
+- **Python-Grundlagen:** Built-in-Funktionen, Typen und Exceptions;
+  `isinstance` gegenüber exaktem `type`-Vergleich; `None`, `dict.get`, Längen-
+  und String-Validierung; `with` für Ressourcenverwaltung; `pathlib`-Methoden
+  wie `mkdir()` und `with_suffix()`.
+- **Fehler und Datenprüfung:** gezieltes Error Handling für `FileNotFoundError`,
+  `json.JSONDecodeError`, `PermissionError`, `OSError` und `TypeError`; fachliche
+  Validation getrennt von technischen Exceptions.
+- **JSON und Speicherung:** JSON Object → `dict`, Array → `list`, String → `str`,
+  Number → `int`/`float`, Boolean → `bool`, Null → `None`; `dump`/`load` arbeiten
+  mit Dateien, `dumps`/`loads` mit JSON-Text. Serialization/Deserialization,
+  strukturierte Textdaten und Atomic Save via temporäre Datei plus `replace()`.
+- **OOP und Collections:** Methode vs. Attribut, Klasse/Objekt, Parameter/Argument,
+  `@property`, `@staticmethod`, `@classmethod`, `@dataclass`, Vererbung und
+  Default-Parameter; veränderliche `list`/`dict`/`set` gegenüber `tuple`.
+- **Speicherformate:** JSON für strukturierte Dokumente/Austausch, CSV für
+  tabellarische Daten, SQLite als dateibasierte Datenbank und SQL als Abfragesprache.
+- **Webstack des Lernprojekts:** TypeScript/TSX, React für UI-Struktur, Vite,
+  HTML/CSS/JavaScript und Browser; Vitest für Einheiten/Logik, Playwright für
+  Browserabläufe, ESLint für Linting, Prettier für Formatierung und TypeScript
+  für Typprüfung.
+- **Testbegriffe:** Testebenen (Unit, Komponente, Integration, Contract, System,
+  E2E), Qualitätsbereiche (Accessibility, Visual Regression, Performance,
+  Security, Usability, Compatibility) und Testzwecke (Smoke, Regression,
+  Acceptance, explorativ) sind unterschiedliche Blickwinkel. Spezialformen:
+  API-, Snapshot-, Load-, Stress-, Recovery- und Deploymenttests.
+- **Minimaler Quality Gate:** Logiktests, Integration, wichtiger E2E-Ablauf,
+  Regression, statische Prüfungen, Build/Start und Basis-Accessibility – je nach
+  Risiko und Projekt, nicht als pauschale Pflichtsuite.
+- **Projekt verstehen:** Ziel/Nutzer und die zehn Projektebenen prüfen;
+  Programmeinstieg finden, den Ablauf Eingabe → Logik → Ausgabe verfolgen,
+  Verantwortlichkeiten, Kernobjekte, Zustand und Tests untersuchen.

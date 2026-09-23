@@ -76,6 +76,13 @@ class VerifyTests(unittest.TestCase):
         result = self.run_gate()
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("[FAIL] Missing", result.stderr)
+        self.configure([
+            {"name": "Outside", "command": [sys.executable, "-c", "print('ran')"], "cwd": ".."}
+        ])
+        result = self.run_gate()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("cwd must be an existing project directory", result.stderr)
+        self.assertNotIn("ran", result.stdout)
 
 
 if __name__ == "__main__":

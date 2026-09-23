@@ -1,1 +1,32 @@
-Diese Vorlage beschreibt das Format für ein größeres oder noch unzureichend geklärtes Vorhaben. Sie hält Problem, Zielgruppe, Nutzen, Scope, Auswirkungen, Entscheidungen und offene Fragen geordnet fest. Sie unterstützt den Übergang von einer ersten Idee zu einem bestätigten, ausreichend klaren Vorhaben. Sie enthält selbst keine Produktidee und keinen Dialogverlauf. Eine bestätigte Idea kann später in konkrete Specs überführt werden.
+# IXXX – Kurzer Titel
+
+## Meta
+
+- **State:** Draft
+
+## Problem und Nutzen
+
+Für wen besteht welches Problem? Was soll sich verbessern?
+
+## Vorschlag und Umfang
+
+Lösungsidee in wenigen fachlichen Sätzen, noch keine Implementierung.
+
+- **Drin:** [erster Umfang]
+- **Nicht drin:** [bewusste Grenze]
+
+## Auswirkungen
+
+Betroffene Projektgrenzen, Daten, Integrationen oder vorhandene Specs – nur soweit bereits bekannt. Keine Annahmen als Fakten ausgeben.
+
+## Entscheidungen
+
+- [Bestätigte Entscheidung mit kurzem Grund; löschen, falls noch keine]
+
+## Offene Punkte
+
+- [Konkrete Frage; löschen, falls geklärt]
+
+## Übernommene Specs (nur nach Umsetzungsauftrag)
+
+- [Spec-Pfad; Abschnitt vorher entfernen]

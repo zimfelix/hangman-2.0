@@ -6,16 +6,16 @@
 
 ## User Story
 
-Als **[Nutzerrolle]** möchte ich **[Verhalten]**, damit **[Nutzen]**.
+Als **[Nutzerrolle]** möchte ich **[Funktion]**, damit **[Nutzen]**.
 
 ## Beschreibung
 
-Fachlicher Umfang und wichtiger Ablauf in wenigen Sätzen. Keine technische Lösung und kein Prompt-Verlauf.
+Ziel, fachlicher Umfang und wichtiger Ablauf in wenigen Sätzen. Keine technische Lösung und kein Prompt-Verlauf.
 
 ## Akzeptanzkriterien
 
 - **AK1:** Ein atomar beobachtbares Verhalten mit eindeutigem Pass/Fail.
-- **AK2:** Ein weiterer unabhängig prüfbarer Fall, nur wenn benötigt.
+- **AK2:** Ein weiterer prüfbarer Fall (nur wenn benötigt).
 
 ## Nicht im Umfang
 
@@ -23,7 +23,7 @@ Fachlicher Umfang und wichtiger Ablauf in wenigen Sätzen. Keine technische Lös
 
 ## Nachweise
 
-Tests referenzieren die zugehörigen Kriterien, z. B. mit `SXXX-AK1`; keine Testliste doppelt pflegen. Nur wenn Automatisierung nicht sinnvoll ist, hier eine begründete Ausnahme festhalten; ungenutzte Beispielzeilen löschen:
+Automatisierte Tests tragen einen Marker wie `SXXX-AK1`; keine Testliste doppelt führen. Nur für begründete Ausnahmen verwenden und ungenutzte Zeilen löschen:
 
 - **AKX [Statisch]:** `PASS` — Befehl und beobachtetes Ergebnis.
 - **AKY [Manuell]:** `PASS` — Ablauf und beobachtetes Ergebnis.
