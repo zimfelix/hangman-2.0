@@ -55,5 +55,7 @@ hangman/
 - Eine Terminaländerung verändert die Website nicht automatisch.
 - Eine gewünschte Website-Übernahme ist ein manueller Schritt mit eigener
   Web-Story, Tests und dem Web-Quality-Gate.
+- Die Testarten und Qualitätsnachweise sind in
+  `harness/rules/quality-matrix.md` eingeordnet.
 - Umgekehrt verändert eine Website-Änderung das Terminalspiel nicht.
 - Die Web-Designregeln in `harness/rules/web.md` gelten nur unter `web/`.

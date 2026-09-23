@@ -10,7 +10,6 @@ class GuessResult(Enum):
     INCORRECT = "incorrect"
     ALREADY_GUESSED = "already_guessed"
     INVALID = "invalid"
-]
 
 class Hangman:
     """Manage the state and rules of one Hangman round."""

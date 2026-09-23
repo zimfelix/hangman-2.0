@@ -1,3 +1,4 @@
+import AxeBuilder from '@axe-core/playwright'
 import { expect, test } from '@playwright/test'
 
 test('S006-AK1 S006-AK2 S006-AK3 S006-AK4 S006-AK10 starts and plays a browser round', async ({
@@ -112,4 +113,7 @@ test('S007-AK1 S007-AK2 S007-AK3 S007-AK4 S007-AK5 S007-AK6 S007-AK7 shows the l
         document.documentElement.clientWidth,
     ),
   ).resolves.toBeTruthy()
+
+  const accessibilityScan = await new AxeBuilder({ page }).analyze()
+  expect(accessibilityScan.violations).toEqual([])
 })

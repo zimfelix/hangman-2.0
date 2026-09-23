@@ -67,6 +67,8 @@ gelten. Allgemeine Arbeitsregeln stehen in `core.md`.
 - Jedes Akzeptanzkriterium erhält einen Nachweis: passende Unit-Tests,
   browserseitig sichtbare Abläufe mit Playwright oder begründete statische bzw.
   manuelle Evidenz in der Spec.
+- Die Testarten und ihre bewusst begrenzte Anwendbarkeit sind in
+  `harness/rules/quality-matrix.md` festgehalten.
 - Das Quality Gate des geänderten Bereichs ist vor `State: Implemented` grün.
   Berührt eine Änderung beide Bereiche, laufen beide Quality Gates.
 

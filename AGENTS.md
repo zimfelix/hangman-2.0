@@ -7,16 +7,18 @@ Code, Dateinamen und technische Bezeichner bleiben idiomatisch englisch.
 ## Vor Änderungen
 
 1. Lies `harness/rules/core.md` und `harness/rules/project.md`.
-2. Wenn `harness/rules/project.md` fehlt oder noch Platzhalter enthält, führe
+2. Nutze `harness/rules/quality-matrix.md`, um passende Nachweise auszuwählen;
+   implementiere keine für den Bereich nicht anwendbaren Testarten künstlich.
+3. Wenn `harness/rules/project.md` fehlt oder noch Platzhalter enthält, führe
    einmal die Projektinitialisierung anhand von
    `harness/templates/project-init.md` durch. Ist das Projektprofil ausgefüllt,
    starte Project Init nicht erneut.
-3. Lies nur die relevante Spec unter `specs/terminal/` oder `specs/web/`.
-4. Bei Terminal-Code in `src/`, `tests/`, `data/` oder `scripts/` lies zusätzlich
+4. Lies nur die relevante Spec unter `specs/terminal/` oder `specs/web/`.
+5. Bei Terminal-Code in `src/`, `tests/`, `data/` oder `scripts/` lies zusätzlich
    `harness/rules/python.md`.
-5. Bei Web-Code in `web/` lies zusätzlich `harness/rules/code.md`,
+6. Bei Web-Code in `web/` lies zusätzlich `harness/rules/code.md`,
    `harness/rules/web.md` und bei Teständerungen `harness/rules/testing.md`.
-6. Bei neuem oder verändertem Verhalten formuliere zuerst eine kleine Spec nach
+7. Bei neuem oder verändertem Verhalten formuliere zuerst eine kleine Spec nach
    `harness/templates/story.md` im passenden Spec-Ordner. Reine Dokumentations-
    und interne Refactoring-Aufgaben benötigen keine neue Story.
 

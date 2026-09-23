@@ -33,7 +33,8 @@ reine Designprototypen und lösen keinen Kauf aus.
 - **AK6:** Ein Über-Hangman-Abschnitt erklärt das lokale Lernprojekt und der
   Footer verlinkt auf diesen Abschnitt sowie auf die Statistikansicht.
 - **AK7:** Die Seite bleibt auf schmalen und breiten Ansichten ohne horizontales
-  Scrollen bedienbar und behält das bestehende Spielverhalten bei.
+  Scrollen bedienbar, ist grundlegend barrierearm (Tastatur, zugängliche Namen,
+  Fokus und Kontrast) und behält das bestehende Spielverhalten bei.
 
 ## Nicht im Umfang
 

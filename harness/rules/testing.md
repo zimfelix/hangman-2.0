@@ -35,10 +35,19 @@ Diese Regeln ergänzen `core.md` für Vitest und Playwright.
 - Chromium ist der Standardbrowser. Weitere Browser kommen nur mit konkreter
   Story oder Fehlernachweis hinzu.
 
+## Accessibility-Basischeck
+
+- Der Landingpage-Browserablauf führt axe-core gegen den gerenderten Webzustand
+  aus und erwartet keine erkannten WCAG-A/AA-Regelverletzungen.
+- Der Scan ergänzt, aber ersetzt nicht, manuelle Tastatur- und
+  Screenreader-Prüfungen. Neue interaktive Zustände müssen bei Bedarf ebenfalls
+  geprüft werden.
+
 ## Quality Gate
 
 - `npm run verify` bündelt Formatprüfung, Linting, Type-Check, Unit-Tests,
-  automatische Web-Spec-Abdeckung, Build und Playwright-Tests.
+  automatische Web-Spec-Abdeckung, Produktionsbuild, Accessibility-Scan und
+  Playwright-Tests gegen das gebaute Artefakt.
 - `npm run spec:check` prüft für jede Story unter `specs/web/` einen gültigen
   State und für jedes AK einen Testmarker oder einen bestandenen statischen bzw.
   manuellen Nachweis.
