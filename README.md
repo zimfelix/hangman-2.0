@@ -11,7 +11,7 @@ Webserver und keinen Autostart-Dienst.
 Wechsle ins Projekt und starte das Spiel:
 
 ```bash
-cd /Users/felix/Code/python/hangman-2.0
+cd /Users/felix/Code/python/learning-sandbox
 .venv/bin/python src/main.py
 ```
 
@@ -40,7 +40,7 @@ Pakete pytest und Ruff sind Entwicklungswerkzeuge.
 ## Orientierung
 
 ```text
-hangman-2.0/
+learning-sandbox/
 ├── AGENTS.md                # Arbeitsweise und kritische Lernbegleitung
 ├── learning-state.md        # Bisher besprochene Themen
 ├── src/
