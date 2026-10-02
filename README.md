@@ -1,7 +1,7 @@
-# Learning Sandbox – Hangman im Terminal
+# Learning Sandbox
 
 Dieses Projekt dient dem **Lernen und Verstehen**, nicht der Fertigstellung
-eines Produkts. Hangman ist ein einfaches Python-Terminalspiel; unabhängige
+eines Produkts. Ursprung war ein Hangman Spiel. Erweiterungen:
 Experimente liegen unter `sandbox/`. Es gibt keine Website, keinen lokalen
 Webserver und keinen Autostart-Dienst.
 
