@@ -18,7 +18,7 @@ from frontend.ui import (
 
 
 def test_welcome_and_main_menu_are_displayed(capsys) -> None:
-    """Covers: S001-AK1."""
+    """Display the welcome message and all menu options."""
     show_welcome()
     show_main_menu()
 
@@ -31,7 +31,7 @@ def test_welcome_and_main_menu_are_displayed(capsys) -> None:
 
 
 def test_difficulty_menu_is_displayed(capsys) -> None:
-    """Covers: S003-AK1."""
+    """Display each difficulty and its attempt limit."""
     show_difficulty_menu()
 
     output = capsys.readouterr().out
@@ -41,7 +41,7 @@ def test_difficulty_menu_is_displayed(capsys) -> None:
 
 
 def test_invalid_difficulty_choice_is_requested_again(monkeypatch, capsys) -> None:
-    """Covers: S003-AK3."""
+    """Retry an invalid difficulty choice."""
     answers = iter(["0", "2"])
     monkeypatch.setattr("builtins.input", lambda _: next(answers))
 
@@ -52,7 +52,7 @@ def test_invalid_difficulty_choice_is_requested_again(monkeypatch, capsys) -> No
 
 
 def test_invalid_menu_choice_is_requested_again(monkeypatch, capsys) -> None:
-    """Covers: S001-AK2."""
+    """Retry an invalid main menu choice."""
     answers = iter(["unbekannt", "1"])
     monkeypatch.setattr("builtins.input", lambda _: next(answers))
 
@@ -63,7 +63,7 @@ def test_invalid_menu_choice_is_requested_again(monkeypatch, capsys) -> None:
 
 
 def test_game_state_contains_all_relevant_information(capsys) -> None:
-    """Covers: S001-AK3."""
+    """Display the word, guesses, attempts, and figure."""
     game = Hangman("python")
     game.guess("p")
     game.guess("x")
@@ -79,7 +79,7 @@ def test_game_state_contains_all_relevant_information(capsys) -> None:
 
 @pytest.mark.parametrize("max_incorrect_guesses", [4, 6, 8])
 def test_hangman_stage_reaches_a_complete_figure(capsys, max_incorrect_guesses) -> None:
-    """Covers: S003-AK4."""
+    """Reach the final figure at each difficulty's attempt limit."""
     game = Hangman("a", max_incorrect_guesses=max_incorrect_guesses)
     displayed_stages = []
 
@@ -93,14 +93,14 @@ def test_hangman_stage_reaches_a_complete_figure(capsys, max_incorrect_guesses) 
 
 
 def test_rules_are_displayed(capsys) -> None:
-    """Covers: S001-AK9."""
+    """Display the game rules."""
     show_rules()
 
     assert "So funktioniert Hangman" in capsys.readouterr().out
 
 
 def test_session_and_total_statistics_are_displayed(capsys) -> None:
-    """Covers: S001-AK10, S004-AK3."""
+    """Display separate session and total statistics."""
     show_session_statistics(
         session_wins=2,
         session_losses=1,
@@ -118,14 +118,14 @@ def test_session_and_total_statistics_are_displayed(capsys) -> None:
 
 
 def test_exit_message_is_displayed(capsys) -> None:
-    """Covers: S001-AK11."""
+    """Display a goodbye message."""
     show_exit_message()
 
     assert "Auf Wiedersehen" in capsys.readouterr().out
 
 
 def test_round_result_is_displayed(capsys) -> None:
-    """Additional evidence for S001-AK8."""
+    """Display the winning round result."""
     won_game = Hangman("a")
     won_game.guess("a")
 

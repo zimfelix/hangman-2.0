@@ -6,7 +6,7 @@ from backend.persistence_v1 import load_statistics, save_statistics_atomically
 
 
 def test_missing_statistics_start_empty(tmp_path) -> None:
-    """Covers: S004-AK1, S004-AK4."""
+    """Initialize missing statistics with zero wins and losses."""
     assert load_statistics(tmp_path / "statistics.json") == {
         "wins": 0,
         "losses": 0,
@@ -14,7 +14,7 @@ def test_missing_statistics_start_empty(tmp_path) -> None:
 
 
 def test_statistics_are_saved_and_loaded(tmp_path) -> None:
-    """Covers: S004-AK2."""
+    """Create the parent directory and round-trip statistics."""
     path = tmp_path / "nested" / "statistics.json"
     statistics = {"wins": 3, "losses": 2}
 

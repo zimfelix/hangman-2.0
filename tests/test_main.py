@@ -10,7 +10,7 @@ from main import play_round
 def test_play_round_uses_selected_difficulty(
     monkeypatch, max_incorrect_guesses: int
 ) -> None:
-    """Covers: S003-AK2, S005-AK4."""
+    """Use the chosen word and difficulty throughout the round."""
     shown_games = []
     wrong_letters = iter("bcdefghi")
 

@@ -5,13 +5,7 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
-
-# Node and Vite
-node_modules/
-web/node_modules/
-web/dist/
-playwright-report/
-test-results/
+.ruff_cache/
 
 # IDE settings
 .idea/

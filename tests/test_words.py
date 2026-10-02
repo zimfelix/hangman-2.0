@@ -8,7 +8,7 @@ from backend.words import choose_word, load_words
 
 
 def test_load_words_reads_json_array(tmp_path) -> None:
-    """Covers: S005-AK1, S005-AK2."""
+    """Load playable words from a JSON array."""
     path = tmp_path / "words.json"
     path.write_text(json.dumps(["python", "hangman"]), encoding="utf-8")
 
@@ -16,7 +16,7 @@ def test_load_words_reads_json_array(tmp_path) -> None:
 
 
 def test_load_words_rejects_missing_or_invalid_data(tmp_path) -> None:
-    """Covers: S005-AK3."""
+    """Report missing files and unplayable word data."""
     with pytest.raises(ValueError, match="not found"):
         load_words(tmp_path / "missing.json")
 
@@ -28,26 +28,26 @@ def test_load_words_rejects_missing_or_invalid_data(tmp_path) -> None:
 
 
 def test_choose_word_returns_word_from_given_list() -> None:
-    """Covers: S002-AK1."""
+    """Choose a word from the provided list."""
     words = ["python"]
 
     assert choose_word(words) == "python"
 
 
 def test_choose_word_rejects_empty_word_list() -> None:
-    """Covers: S002-AK2."""
+    """Reject an empty word list."""
     with pytest.raises(ValueError, match="alphabetic word"):
         choose_word([])
 
 
 def test_choose_word_rejects_list_without_playable_words() -> None:
-    """Covers: S002-AK3."""
+    """Reject a list without alphabetic words."""
     with pytest.raises(ValueError, match="alphabetic word"):
         choose_word(["", "123", "hang man"])
 
 
 def test_choose_word_ignores_unplayable_words() -> None:
-    """Covers: S002-AK4."""
+    """Filter out unplayable entries before choosing a word."""
     words = ["", "hang man", "python3", "python"]
 
     assert choose_word(words) == "python"

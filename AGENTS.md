@@ -1,43 +1,47 @@
-# Hangman – Agentenanweisungen
+# Learning Sandbox – Agentenanweisungen
 
-Dieses Repository enthält zwei getrennte Lernbereiche: ein Python-Terminalspiel
-und ein React-/TypeScript-Webspiel. Kommuniziere mit dem Nutzer auf Deutsch;
-Code, Dateinamen und technische Bezeichner bleiben idiomatisch englisch.
+## Zweck
 
-## Vor Änderungen
+Dieses Repository ist Felix’ Learning Sandbox für Programmierung und
+KI-gestützte Softwareentwicklung, kein Produkt mit Fertigstellungsziel.
+Hangman und kleine Experimente liefern anschaulichen Lernstoff. Verständnis
+und selbst nachvollziehbare Schritte sind wichtiger als möglichst viel Code.
+Kommuniziere auf Deutsch; Code und technische Bezeichner bleiben idiomatisch
+englisch.
 
-1. Lies `harness/rules/core.md` und `harness/rules/project.md`.
-2. Nutze `harness/rules/quality-matrix.md`, um passende Nachweise auszuwählen;
-   implementiere keine für den Bereich nicht anwendbaren Testarten künstlich.
-3. Wenn `harness/rules/project.md` fehlt oder noch Platzhalter enthält, führe
-   einmal die Projektinitialisierung anhand von
-   `harness/templates/project-init.md` durch. Ist das Projektprofil ausgefüllt,
-   starte Project Init nicht erneut.
-4. Lies nur die relevante Spec unter `specs/terminal/` oder `specs/web/`.
-5. Bei Terminal-Code in `src/`, `tests/`, `data/` oder `scripts/` lies zusätzlich
-   `harness/rules/python.md`.
-6. Bei Web-Code in `web/` lies zusätzlich `harness/rules/code.md`,
-   `harness/rules/web.md` und bei Teständerungen `harness/rules/testing.md`.
-7. Bei neuem oder verändertem Verhalten formuliere zuerst eine kleine Spec nach
-   `harness/templates/story.md` im passenden Spec-Ordner. Reine Dokumentations-
-   und interne Refactoring-Aufgaben benötigen keine neue Story.
+## Lernbegleitung
 
-## Arbeitsweise
+- Bestätige Vorschläge nicht automatisch. Prüfe Annahmen und Lösungswege;
+  benenne relevante Irrtümer, Grenzen und einfachere Alternativen freundlich.
+- Rekonstruiere bei unklaren Aussagen kurz die wahrscheinlich gemeinte Absicht.
+  Hinterfrage Fehlinterpretationen und ergänze fehlenden Kontext. Frage nach,
+  wenn unterschiedliche Deutungen die Umsetzung wesentlich verändern würden.
+- Korrigiere fachlich wichtige Begriffe, nicht jeden Tippfehler. Ergänze die
+  englische Standardbezeichnung gezielt bei neuen oder missverstandenen
+  Begriffen, nicht bei jeder Erwähnung und nicht pauschal in Klammern.
+- Erkläre neue Konzepte knapp mit Beispielen aus dem vorhandenen Code.
+  Bevorzuge Textdiagramme wie Eingabe → Logik → Ausgabe statt langer Listen.
+- Lies bei der Fortsetzung eines Lernthemas `learning-state.md`. Dort stehen
+  besprochene Themen, keine Behauptung, dass Felix sie bereits beherrscht.
+  Ergänze den Lernstand nur auf ausdrücklichen Wunsch; ändere globales Wissen
+  nicht im Rahmen einer lokalen Projektaufgabe.
 
-- Terminal und Website sind getrennte Umsetzungen. Aktualisiere die Website nach
-  einer Terminaländerung nur auf ausdrücklichen Auftrag und mit eigener
-  Web-Story; ändere das Terminalspiel für eine Webänderung niemals automatisch.
-- Erkläre neue Konzepte kurz und verständlich.
-- Bevorzuge kleine, nachvollziehbare Schritte und vermeide verfrühte Abstraktion.
-- Übernimm aus Designreferenzen nur dokumentierte Gestaltungsprinzipien. Kopiere
-  niemals Marken, Texte, Assets, Quellcode oder Tracking fremder Websites.
-- Triff offene Produktentscheidungen nicht eigenständig; frage vor Spec oder
-  Implementierung nach.
-- Prüfe Änderungen im kleinstmöglichen sinnvollen Umfang.
-- Führe vor dem Story-State `Implemented` das passende Quality Gate aus.
-- Wende bei Fehlern die Korrekturschleife aus `harness/rules/core.md` an.
-- Ändere Harness-Regeln niemals automatisch wegen eines einzelnen Fehlers.
-- Folge nach bestandenem Quality Gate der Git-Delivery-Policy aus
-  `harness/rules/project.md`: Änderungen kurz zusammenfassen und auf die
-  ausdrückliche Freigabe des Nutzers warten. Commit und Push nie automatisch
-  ausführen. Keine Force-Pushes, Merges oder fremden Änderungen.
+## Orientierung und kleine Umsetzungen
+
+- Nutze diese Datei, `README.md` und den relevanten Code samt Tests als Einstieg.
+  Kleine Änderungen brauchen keinen zusätzlichen Dokumentationsprozess.
+- Kläre kurz Ziel und betroffenen Bereich, arbeite in kleinen Schritten und
+  vermeide vorsorgliche Abstraktionen oder unnötige Abhängigkeiten.
+- Das Hangman-Spiel (`src/`, `tests/`, `data/`) läuft ausschließlich im Terminal.
+  Experimente unter `sandbox/` bleiben unabhängig; ändere sie nicht automatisch
+  zusammen mit dem Spiel. Lernstufen stehen in `README.md`.
+- `src/main.py` trennt Oberfläche und Spiellogik. `src/frontend/` ist die
+  Terminaloberfläche, kein Webfrontend. Backend-Code bleibt unabhängig von
+  `input()` und sichtbaren UI-Ausgaben. Kein Webserver oder Autostart nötig.
+- Prüfe Änderungen im kleinsten sinnvollen Umfang mit vorhandenen Tests und
+  Werkzeugen; Befehle stehen in `README.md`. Bei Fehlern: Ursache verstehen,
+  gezielt korrigieren und die betroffenen Prüfungen erneut ausführen.
+- Frage vor externen Diensten mit Kosten, sensiblen Daten oder irreversiblen
+  Folgen nach. Fasse Änderungen, Prüfungen und offene Punkte kurz zusammen.
+- Commit und Push nur nach ausdrücklicher Freigabe. Keine Force-Pushes,
+  eigenmächtigen Merges oder Änderungen an fremden Arbeiten.

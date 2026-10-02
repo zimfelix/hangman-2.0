@@ -4,7 +4,7 @@ from backend.game import GuessResult, Hangman
 
 
 def test_guess_is_case_insensitive() -> None:
-    """Covers: S001-AK4."""
+    """Uppercase input matches the lowercase word."""
     game = Hangman("Python")
 
     result = game.guess("P")
@@ -14,7 +14,7 @@ def test_guess_is_case_insensitive() -> None:
 
 
 def test_invalid_and_repeated_guesses_do_not_cost_attempts() -> None:
-    """Covers: S001-AK5."""
+    """Invalid and repeated input leaves attempts unchanged."""
     game = Hangman("python")
     initial_attempts = game.remaining_attempts
 
@@ -28,7 +28,7 @@ def test_invalid_and_repeated_guesses_do_not_cost_attempts() -> None:
 
 
 def test_correct_guess_reveals_every_occurrence() -> None:
-    """Covers: S001-AK6."""
+    """A correct letter reveals every matching position."""
     game = Hangman("letter")
 
     game.guess("t")
@@ -37,7 +37,7 @@ def test_correct_guess_reveals_every_occurrence() -> None:
 
 
 def test_wrong_guess_reduces_remaining_attempts() -> None:
-    """Covers: S001-AK7."""
+    """A wrong letter costs one attempt."""
     game = Hangman("python", max_incorrect_guesses=6)
 
     result = game.guess("x")
@@ -47,7 +47,7 @@ def test_wrong_guess_reduces_remaining_attempts() -> None:
 
 
 def test_game_recognizes_win_and_loss() -> None:
-    """Covers: S001-AK8."""
+    """Completed rounds distinguish winning from losing."""
     winning_game = Hangman("a")
     winning_game.guess("a")
 

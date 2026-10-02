@@ -1,85 +1,136 @@
-# Hangman
+# Learning Sandbox – Hangman im Terminal
 
-Dieses Repository enthält zwei getrennte, lokal ausführbare Hangman-Lernprojekte.
-Sie teilen fachliche Ideen, werden aber bewusst nicht automatisch synchronisiert.
+Dieses Projekt dient dem **Lernen und Verstehen**, nicht der Fertigstellung
+eines Produkts. Hangman ist ein einfaches Python-Terminalspiel; unabhängige
+Experimente liegen unter `sandbox/`. Es gibt keine Website, keinen lokalen
+Webserver und keinen Autostart-Dienst.
 
-## Terminalspiel
+## Hangman starten – auch im normalen macOS-Terminal
 
-Das ursprüngliche Python-Konsolenspiel bleibt unter `src/` erhalten.
+Öffne **Terminal** über Spotlight (`Cmd + Leertaste`, dann „Terminal“).
+Wechsle ins Projekt und starte das Spiel:
 
 ```bash
+cd /Users/felix/Code/python/hangman-2.0
 .venv/bin/python src/main.py
 ```
 
-Qualität prüfen:
+Das funktioniert genauso im PyCharm-Terminal. Das normale Terminalfenster
+kannst du größer ziehen; mit `Cmd + +` lässt sich die Schrift vergrößern.
+Im Spiel wählst du Menü und Schwierigkeit über Zahlen und rätst Buchstaben.
+Mit Menüpunkt `4` beendest du das Spiel; `Ctrl + C` bricht es direkt ab.
+
+Die Befehle müssen aus dem Projektordner ausgeführt werden, da das Spiel
+Wortliste und Statistik relativ zu diesem Ordner lädt. Die virtuelle Umgebung
+muss nicht aktiviert werden: `.venv/bin/python` verwendet sie direkt.
+
+### Einmalige Einrichtung
+
+Falls `.venv/` noch nicht vorhanden ist: Python 3.14 oder neuer installieren,
+dann im Projektordner ausführen:
 
 ```bash
-.venv/bin/python scripts/verify.py
+python3.14 -m venv .venv
+.venv/bin/python -m pip install -r requirements-dev.txt
 ```
 
-## Webspiel
+Das Spiel selbst benötigt nur die Python-Standardbibliothek. Die zusätzlichen
+Pakete pytest und Ruff sind Entwicklungswerkzeuge.
 
-Die eigenständige React-/Vite-/TypeScript-Umsetzung liegt unter `web/`. Sie
-enthält JSON-Wortdaten, Schwierigkeitsstufen sowie Statistik in `localStorage`.
-
-```bash
-cd web
-npm install
-npm run dev
-```
-
-Qualität prüfen:
-
-```bash
-cd web
-npm run verify
-```
-
-## Struktur
+## Orientierung
 
 ```text
-hangman/
-├── src/                     # Python-Terminalanwendung
-├── tests/                   # pytest-Tests für das Terminalspiel
-├── data/                    # Terminal-Wortliste und Statistikdatei
-├── scripts/                 # Python-Quality-Gate
-├── web/                     # React-/Vite-Webanwendung samt eigener Tests
-├── specs/
-│   ├── terminal/            # Stories des Terminalspiels
-│   └── web/                 # Stories der Website
-├── harness/                 # Bisheriger Harness (für V2-Arbeit inaktiv)
-└── harness-v2/              # Aktiver V2-Projektinit und Gate-Runner
+hangman-2.0/
+├── AGENTS.md                # Arbeitsweise und kritische Lernbegleitung
+├── learning-state.md        # Bisher besprochene Themen
+├── src/
+│   ├── main.py              # Programmeinstieg und Ablaufsteuerung
+│   ├── frontend/ui.py       # Terminalein- und -ausgabe, keine Website
+│   └── backend/             # Spiellogik, Wortauswahl und Speicherung
+├── tests/                   # Tests für das Terminalspiel
+├── data/                    # JSON-Wortliste und Spielstatistik
+└── sandbox/weather_api/     # Unabhängiges HTTP-/JSON-Experiment
 ```
 
-## Harness V2 und Arbeitsweise
+```text
+Terminaleingabe → main.py → Spiellogik → Terminalausgabe
+                     ↕
+                JSON-Dateien
+```
 
-Für V2-Arbeit gilt der Einstieg in `harness-v2/AGENTS.md` und das Projektprofil
-in `harness-v2/harness/rules/project-specific/project.md`. Der bisherige
-`harness/` bleibt erhalten, ist dafür aber nicht die Regelquelle. Bestehende
-Feature-Stories in `specs/terminal/` und `specs/web/` bleiben Anforderungen;
-V2-`specs/` dokumentiert ausschließlich die Entwicklung des Starter-Kits.
-Änderungen am Terminal verändern die Website nicht automatisch und umgekehrt.
-Eine Übernahme zwischen Bereichen braucht eigenen Auftrag, passende Story und
-Bereichs-Gate. Die Web-Designregeln in
-`harness-v2/harness/rules/project-specific/web.md` gelten nur für `web/`.
+`frontend` bezeichnet hier nur die Terminaloberfläche, `backend` die
+Python-Logik – keinen Webserver. Das Spiel nutzt `persistence_v1.py` mit
+Dictionaries. `persistence_v2.py` bleibt als separate Lernvariante mit einer
+Dataclass und eigenen Tests erhalten.
 
-Aggregiertes V2-Gate (führt Terminal, Web, V2-Unit-Tests und V2-Ruff einmal aus):
+Für kleine Änderungen reichen `AGENTS.md`, diese Übersicht und der relevante
+Code samt Tests. Vorschläge und Annahmen sollen kritisch geprüft und wichtige
+Begriffe bei Bedarf korrigiert werden.
+
+## Lernpfad: kleine Stufen am Terminalspiel
+
+Die Stufen sind Orientierung, keine bereits umgesetzten Funktionen und kein
+Pflichtprogramm. Das Spiel bleibt im Terminal bedienbar.
+
+### 1. Vorhandenes Hangman verstehen
+
+- Eingabe → Logik → Ausgabe im Code verfolgen.
+- Klassen, Methoden, Eigenschaften und Spielzustand verstehen.
+- Eingaben prüfen, Schwierigkeit und Gewinn/Verlust nachvollziehen.
+- JSON-Wortliste und Statistik laden/speichern; Dictionary und Dataclass vergleichen.
+- Einzelne Änderungen mit kleinen Tests absichern.
+
+### 2. Eine externe API abrufen
+
+Als vorhandenes Einstiegsbeispiel dient die Wetter-Sandbox:
+
+- Client und Server, Endpoint, GET und URL-Parameter unterscheiden.
+- HTTP-Status, Timeout und Verbindungsfehler behandeln.
+- JSON-Text in Python-Daten umwandeln und erwartete Felder prüfen.
+- Netzwerkzugriffe in Tests simulieren, statt das Internet vorauszusetzen.
 
 ```bash
-.venv/bin/python harness-v2/scripts/verify.py
+.venv/bin/python sandbox/weather_api/weather.py
+.venv/bin/python -m unittest discover -s sandbox/weather_api -v
 ```
 
-### Zuständigkeiten – eine Quelle pro Regel
+Der Live-Abruf braucht Internet; die Tests nicht. Details stehen in
+`sandbox/weather_api/README.md`.
 
-| Ort | Aufgabe |
-|---|---|
-| `harness-v2/AGENTS.md` | V2-Einstieg und Verweise. |
-| `harness-v2/harness/rules/universal/core.md` | Universeller Ablauf; wann Idea, Spec und Gate nötig sind. |
-| `harness-v2/harness/rules/universal/ideas.md`, `quality.md` | Klärung bzw. Auswahl von Nachweisen. |
-| `harness-v2/harness/templates/idea.md`, `story.md`, `project-init.md` | Artefaktformen und einmalige Projektinit. |
-| `harness-v2/harness/rules/project-specific/project.md` | Projektziel, Grenzen, Architektur und Gate-Einstieg. |
-| `harness-v2/harness/rules/project-specific/code.md` | Gemeinsame Code- und Architekturkonventionen. |
-| `harness-v2/harness/rules/project-specific/python.md`, `web.md`, `testing.md` | Bereichs- und Testkonventionen nur bei Bedarf. |
-| `harness-v2/harness/rules/project-specific/quality-matrix.md` | Zuordnung der Bereichsnachweise ohne zweite Befehlsquelle. |
-| `harness-v2/harness/rules/project-specific/quality-gate.json`, `harness-v2/scripts/verify.py` | Ausführbare Gate-Checks und Runner. |
-| `specs/`, `harness-v2/ideas/`, `harness-v2/learning-state.md` | Anforderungen, offene Vorhaben und manuell gesammeltes Wissen – keine Regeln. |
+### 3. API-Daten im Terminal-Hangman verwenden
+
+- Optional Wörter von einem geeigneten Dienst abrufen; Anbieter und
+  Nutzungsbedingungen vorab klären.
+- Abruf, Datenprüfung und Spiellogik getrennt halten.
+- Bei Ausfällen weiter die lokale JSON-Wortliste verwenden.
+- Erfolgreiche, fehlerhafte und unerwartete Antworten testen.
+
+Eine API zu verwenden erfordert keine eigene Website und keinen eigenen Server.
+
+### 4. Von JSON zu SQLite
+
+- Datei, Tabelle, Zeile, Spalte und Primärschlüssel verstehen.
+- Mit Pythons `sqlite3` eine lokale Datenbank öffnen.
+- Zunächst einzelne Rundenergebnisse speichern: gewonnen/verloren,
+  Schwierigkeit und Zeitpunkt.
+- `INSERT` und `SELECT` mit gebundenen Parametern verwenden; keine SQL-Abfragen
+  aus Benutzereingaben zusammenbauen.
+- Transaktionen, Commit und Rollback kennenlernen.
+- Gesamtstatistik aus Rundenergebnissen berechnen und mit einer temporären
+  Datenbank testen.
+
+SQLite läuft als Bibliothek im Python-Prozess: kein zusätzlicher Datenbankserver.
+
+## Änderungen prüfen
+
+Im Projektordner:
+
+```bash
+.venv/bin/python -m compileall -q src tests sandbox
+.venv/bin/python -m ruff check src tests sandbox
+.venv/bin/python -m pytest -q
+.venv/bin/python -m unittest discover -s sandbox/weather_api -v
+```
+
+Die Sandbox bleibt vom Spiel unabhängig. Wortliste und vorhandene
+Spielstatistik werden bei Testläufen nicht verändert.

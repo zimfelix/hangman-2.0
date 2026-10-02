@@ -1,7 +1,7 @@
 [project]
-name = "hangman-2"
+name = "learning-sandbox"
 version = "0.1.0"
-description = "Terminal version of Hangman"
+description = "Learning playground with Python Hangman and small experiments"
 requires-python = ">=3.14"
 dependencies = []
 
